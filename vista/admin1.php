@@ -1,5 +1,5 @@
 <?php
-  require_once "../php/clases.php";
+    require_once "../php/clases.php";
 
     
     session_start();
@@ -37,6 +37,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gestion - UECPPB</title>
+  <link rel="stylesheet" href="../public/css/table.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -57,14 +58,14 @@
   <link rel="stylesheet" href="../plantilla/AdminLTE/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../plantilla/AdminLTE/plugins/summernote/summernote-bs4.min.css">
-  <link rel="stylesheet" href="../public/css/registropv.css">
+  <link rel="stylesheet" href="../public/css/estilt.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="../plantilla/AdminLTE/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
   </div>
 
   <!-- Navbar -->
@@ -133,8 +134,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="../asset/images/CPPB.jpeg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Postulación a elecciones</span>
+      <img src="../asset/Ponlecorazon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Gestion</span>
     </a>
 
     <!-- Sidebar -->
@@ -142,18 +143,29 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../asset/images/user.png" class="img-circle elevation-2" alt="User Image">
+          <img src="../asset/usuario.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">
             <?php
-          $userr= $_SESSION['usuario'];
-          echo $userr;
-          ?></a>
+
+          echo $_SESSION['usuario'];
+
+        ?></a>
         </div>
       </div>
 
-
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -171,13 +183,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="admin1.php" class="nav-link">
+                <a href="admin1.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Comunas</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin2.php" class="nav-link active">
+                <a href="admin2.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Postulados a Voceria</p>
                 </a>
@@ -205,7 +217,6 @@
             </a>
           </li>
 
-
       </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -216,156 +227,58 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
 
-    <main>
+      <main>
 
-    
-
-
-    <form action="dbestudiantes.php" class="formulario" id="formulario" method="post">
-
-      <div class="formulario__grupo" id="grupo__cedula">
-      <label for="cedula" class="formulario__label"></label>
-      <div class="formulario__grupo-input">
-        <div class="input-group">
-          <input type="text" class="formulario__input" name="doc" id="cedula" placeholder="Cedula">
-          <i class="formulario__validacion-estado fas fa-times-circle"></i>
-        </div>
-      </div>
-      <p class="formulario__input-error">La Cedula debe contener 8 digitos.</p>
+      <div class="text-right mb-2">
+        <a href="fpdf/pdfvistad.php" target="_blank" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i>Generar Reportes</a>
       </div>
 
-      <!-- Grupo: Nombre -->
-      <div class="formulario__grupo" id="grupo__nombre">
-      <label for="nombre" class="formulario__label"></label>
-      <div class="formulario__grupo-input">
-      <input type="text" class="formulario__input" name="name" id="nombre" placeholder="Nombre">
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">El Nombre tiene que ser de 4 a 30 Caracteres.</p>
+      <div class="text-right mb-2">
+        <input type="search" placeholder="buscar...">
       </div>
 
-      <div class="formulario__grupo" id="grupo__apellido">
-      <label for="apellido" class="formulario__label"></label>
-      <div class="formulario__grupo-input">
-      <input type="text" class="formulario__input" name="apel" id="apellido" placeholder="Apellido">
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">El Apellido tiene que ser de 4 a 30 Caracteres.</p>
-      </div>
+      <table border="1" class="table table-bordered table-hover w-100">
 
+      
+        <thead>
+        <tr>
+                                    <th><b>Comuna</b></th>
+                                    <th><b>Consejo Comunal</b></th>
+                                    <th><b>Nro de Familia</b></th>
+                                    <th><b>Nro de Personas</b></th>
 
-      <!-- Grupo: Contraseña -->
-      <div class="formulario__grupo" id="grupo__sexo">
-      <label for="sexo" class="formulario__label"></label>
-      <div class="formulario__grupo-input">
-      <select type="sexo" class="formulario__input" name="sex" id="sexo" placeholder="Sexo">
-                  <option value="">Sexo</option>
-                  <option value="Masculino">Masculino</option>
-                  <option value="Femenino">Femenino</option>
-              </select>
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
-      </div>
+        </tr>
+        </thead>
 
-
-      <div class="formulario__grupo" id="grupo__fechanacimiento">
-      <label for="fechanacimiento" class="formulario__label"></label>
-      <div class="formulario__grupo-input">
-      <input type="date" class="formulario__input" name="fn" id="fechanacimiento" placeholder="Fecha de Nacimiento">
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
-      </div>
-
-      <!-- Grupo: Correo Electronico -->
-      <div class="formulario__grupo" id="grupo__lugarnacimiento">
-      <label for="lugarnacimiento" class="formulario__label"></label>
-      <div class="formulario__grupo-input">
-      <input type="text" class="formulario__input" name="ln" id="lugarnacimiento" placeholder="Lugar de Nacimiento">
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">El Lugar de Nacimiento solo puede contener letras.</p>
-      </div>
-
-      <!-- Grupo: Teléfono -->
-      <div class="formulario__grupo" id="grupo__condicionvivienda">
-      <label for="condicionvivienda" class="formulario__label"></label>
-      <div class="formulario__grupo-input">
-      <select type="text" class="formulario__input" name="con" id="condicionvivienda" placeholder="Condicion de Vivienda">
-                <option value="">Condicion de Vivienda</option>
-                <option value="mama">Mama</option>
-                <option value="papa y mama">papa y mama</option>
-                <option value="papa">papa</option>
-              </select>
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">La condicion de vivienda.</p>
-      </div>
-
-      <div class="formulario__grupo" id="grupo__catedra">
-      <label for="catedra" class="formulario__label"></label>
-      <div class="formulario__grupo-input">
-      <select class="formulario__input" name="aec" id="catedra" placeholder="Catedra Extra Fuera de la institucion">
-                  <option value="">Catedra Extra Fuera de la institucion</option>
-                  <option value="1">Ninguno</option>
-                  <option value="2">Baloncesto</option>
-                  <option value="3">Fútbol</option>
-                  <option value="4">Tenis</option>
-                  <option value="5">Golf</option>
-                  <option value="6">Béisbol</option>
-                  <option value="7">Ciclismo</option>
-                  <option value="8">Voleibol</option>
-                  <option value="9">Boxeo</option>
-              </select>
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">La condicion de vivienda.</p>
-      </div>
-
-      <div class="formulario__grupo" id="grupo__aulaintegrada">
-      <label for="aulaintegrada" class="formulario__label"></label>
-      <div class="formulario__grupo-input">
-      <select class="formulario__input" name="ai" id="aulaintegrada">
-                  <option value="1">Aula Integrada</option>
-                  <option value="2">No</option>
-                  <option value="3">Si</option>
-              </select>
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">La condicion de vivienda.</p>
-      </div>
-
-      <div class="formulario__mensaje" id="formulario__mensaje">
-        <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
-      </div>
-
-      <div class="formulario__grupo formulario__grupo-btn-enviar">
-        <button type="submit" name="btn111" class="formulario__btn">Enviar</button>
-        <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Datos enviados exitosamente!</p>
-
-
-      </div>
-
-      <input type="hidden" name="idrepre" value="
       <?php
-        $c = new conectar();
-        $conexion = $c->conexion();
-        $query = $conexion -> query ("SELECT * FROM `user` WHERE `usuario`= '".$_SESSION['usuario']."'");
-        while ($row = mysqli_fetch_array($query)) {
-          echo $row['id_user'];
-
-          }?>
-      ">
-      <input type="hidden" name="idgrado" value="1">
-      <input type="hidden" name="idnivel" value="1">
-                            <p class="warnings" id="warnings"></p>
-    </form>
-    <script src="../asset/js/formestudiante.js"></script>
+        $c= new conectar();
+        $conexion=$c->conexion();
+        $query = $conexion -> query ("SELECT * FROM `consejocomunal`");
+        while ($row = mysqli_fetch_array($query)) { 
 
 
 
 
+          
+
+      ?>
+
+          <tbody>
+            <tr>
+              <th><b><?php echo $row['nombrecomuna']; ?></b></th>
+              <th><b><?php echo $row['nombreconsejocomunal']; ?></b></th>
+              <th><b><?php echo $row['numerofamilia']; ?></b></th>
+              <th><b><?php echo $row['numeropersonas']; ?></b></th>
+
+
+            </tr>
+          </tbody>
+      
+      <?php
+          }
+      ?>
+
+   </table>
     </main>
 
 

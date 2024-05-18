@@ -57,7 +57,7 @@
   <link rel="stylesheet" href="../plantilla/AdminLTE/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../plantilla/AdminLTE/plugins/summernote/summernote-bs4.min.css">
-  <link rel="stylesheet" href="../public/css/registropv.css">
+  <link rel="stylesheet" href="../css/estilo.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -177,13 +177,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin2.php" class="nav-link active">
+                <a href="admin2.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Postulados a Voceria</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin3.php" class="nav-link">
+                <a href="admin3.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Votantes</p>
                 </a>

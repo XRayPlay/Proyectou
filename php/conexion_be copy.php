@@ -1,33 +1,33 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
---
--- Host: localhost:3306
--- Generation Time: May 18, 2024 at 05:04 AM
--- Server version: 8.0.30
--- PHP Version: 8.1.10
+<?php
+class conectar{
+    private $servidor="localhost";
+    private $usuario="root";
+    private $pass="";
+    private $bd="proyect";
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+    public function conexion(){
+        $conexion = mysqli_connect($this->servidor, $this->usuario, $this->pass, $this->bd);
+        return $conexion;
+
+        
+    }
+}
+
+$obj = new conectar;
+$connect = $obj->conexion();
+if($connect->connect_error){
+    echo'<script>
+        alert("No se pudo establecer la conexion")
+        window.location = "../index.php"
+    </script>';
+}
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
---
--- Database: `proyect`
---
-CREATE DATABASE IF NOT EXISTS `proyect` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+
+$sql = "
+CREATE DATABASE `proyect`;
 USE `proyect`;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `consejocomunal`
---
 
 CREATE TABLE `consejocomunal` (
   `id_comunidad` int NOT NULL,
@@ -39,34 +39,70 @@ CREATE TABLE `consejocomunal` (
   `numerofamilia` int NOT NULL,
   `numeropersonas` int NOT NULL,
   `direccion` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)
 
---
--- Dumping data for table `consejocomunal`
---
 
 INSERT INTO `consejocomunal` (`id_comunidad`, `nombrecomuna`, `nombreconsejocomunal`, `N_MPPCPS`, `numeroregistro`, `rifconsejocomunal`, `numerofamilia`, `numeropersonas`, `direccion`) VALUES
 (1, 'Comuna Socialista Sierra Maestra', 'Las Islas', 44847, '01-01-22-001-0069', 'J-31181619-4', 546, 1266, '');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `direccion`
---
 
-CREATE TABLE `direccion` (
+CREATE TABLE `familiia` (
+  `familiaid` int NOT NULL,
+  `parentesco` varchar(20) NOT NULL,
+  `descripcion` text NOT NULL
+)
+
+
+
+INSERT INTO `familiia` (`familiaid`, `parentesco`, `descripcion`) VALUES
+(1, 'Jefe (a) d Familia', ''),
+(2, 'Pareja', ''),
+(3, 'Hijio (a)', ''),
+(4, 'Padre', ''),
+(5, 'Madre', ''),
+(6, 'Abuela', ''),
+(7, 'Nuero (a)', ''),
+(8, 'Sobrina (o)', ''),
+(9, 'Tia(o)', '');
+
+
+
+CREATE TABLE `habitantes` (
+  `id_habitantes` int NOT NULL,
+  `nombre` varchar(20) NOT NULL,
+  `apellido` varchar(20) NOT NULL,
+  `sexo` varchar(10) NOT NULL,
+  `fechanacimiento` date NOT NULL,
+  `cedula` varchar(12) NOT NULL
+)
+
+
+
+CREATE TABLE `user` (
+  `id_user` int NOT NULL,
+  `usuario` varchar(15) NOT NULL,
+  `pass` varchar(256) NOT NULL
+)
+
+
+
+INSERT INTO `user` (`id_user`, `usuario`, `pass`) VALUES
+(1, 'admin', '12345678');
+
+
+
+CREATE TABLE `voceras` (
   `direccid` int NOT NULL,
   `bloque` varchar(5) NOT NULL,
   `letra` varchar(5) NOT NULL,
   `piso` varchar(5) NOT NULL,
   `apto` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)
 
---
--- Dumping data for table `direccion`
---
 
-INSERT INTO `direccion` (`direccid`, `bloque`, `letra`, `piso`, `apto`) VALUES
+
+INSERT INTO `voceras` (`direccid`, `bloque`, `letra`, `piso`, `apto`) VALUES
 (1, '29-C', 'A', 'PB', 'AA'),
 (2, '29-C', 'A', 'PB', 'O1'),
 (3, '29-C', 'A', '1', '10'),
@@ -433,272 +469,73 @@ INSERT INTO `direccion` (`direccid`, `bloque`, `letra`, `piso`, `apto`) VALUES
 (364, '32-C', 'D', '3', '8'),
 (365, '32-C', 'CASA', '', '1');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `familiia`
---
-
-CREATE TABLE `familiia` (
-  `familiaid` int NOT NULL,
-  `parentesco` varchar(20) NOT NULL,
-  `descripcion` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `familiia`
---
-
-INSERT INTO `familiia` (`familiaid`, `parentesco`, `descripcion`) VALUES
-(1, 'Jefe (a) d Familia', ''),
-(2, 'Pareja', ''),
-(3, 'Hijio (a)', ''),
-(4, 'Padre', ''),
-(5, 'Madre', ''),
-(6, 'Abuela', ''),
-(7, 'Nuero (a)', ''),
-(8, 'Sobrina (o)', ''),
-(9, 'Tia(o)', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `habitantes`
---
-
-CREATE TABLE `habitantes` (
-  `id_habitantes` int NOT NULL,
-  `nombre` varchar(20) NOT NULL,
-  `apellido` varchar(20) NOT NULL,
-  `sexo` varchar(10) NOT NULL,
-  `fechanacimiento` date NOT NULL,
-  `cedula` varchar(12) NOT NULL,
-  `familiaid` int NOT NULL,
-  `direccid` int NOT NULL,
-  `id_comunidad` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `preregistro`
---
-
-CREATE TABLE `preregistro` (
-  `id_preregistro` int NOT NULL,
-  `Nombre` int NOT NULL,
-  `Apellido` int NOT NULL,
-  `Asignacion` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `id_user` int NOT NULL,
-  `usuario` varchar(15) NOT NULL,
-  `pass` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id_user`, `usuario`, `pass`) VALUES
-(1, 'admin', '12345678');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `userhabitantes`
---
-
-CREATE TABLE `userhabitantes` (
-  `id_userhab` int NOT NULL,
-  `usuariohab` varchar(16) NOT NULL,
-  `passhab` varchar(15) NOT NULL,
-  `id_habitantes` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vocerias`
---
 
 CREATE TABLE `vocerias` (
   `voceriasid` int NOT NULL,
-  `nomvoce` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nomvoce` varchar(50) NOT NULL,
   `nrovocep` int NOT NULL,
   `nrovoces` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+)
 
---
--- Dumping data for table `vocerias`
---
 
-INSERT INTO `vocerias` (`voceriasid`, `nomvoce`, `nrovocep`, `nrovoces`) VALUES
-(1, 'Comite de Salud', 1, 1),
-(2, 'Comite vivienda, habitat y gestion de riesgo', 1, 1),
-(3, 'Comite seguridad y defensa', 2, 2),
-(4, 'Comite Alimentacion y defensa al consumidor y economia comunal', 1, 1),
-(5, 'Comite Comunicacion informacion  y telecomunicaciones', 1, 1),
-(6, 'Comite Proteccion social Ninos adolescente y familia', 1, 1),
-(7, 'Comite Adulto Mayor y Discapacidad', 1, 1),
-(8, 'Comite Educacion y formacion Ciudadana', 1, 1),
-(9, 'Comite Mujeres e Igualdad de genero  y parto humanizado', 1, 1),
-(10, 'Comite Cutura Deporte y recreacion', 2, 2),
-(11, 'Unidad Administrativa y Financiera', 5, 5),
-(12, 'Unidad Contraloria Social', 5, 5);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `votantes`
---
-
-CREATE TABLE `votantes` (
-  `votanteid` int NOT NULL,
-  `cedula` int NOT NULL,
-  `apellido` varchar(50) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `fecha-nac` date NOT NULL,
-  `fecha-elec` date NOT NULL,
-  `edad` int NOT NULL,
-  `votar` int NOT NULL,
-  `sexo` varchar(10) NOT NULL,
-  `direccid` int NOT NULL,
-  `voceriasid` int NOT NULL,
-  `parentescoid` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `consejocomunal`
---
 ALTER TABLE `consejocomunal`
   ADD PRIMARY KEY (`id_comunidad`);
 
---
--- Indexes for table `direccion`
---
-ALTER TABLE `direccion`
-  ADD PRIMARY KEY (`direccid`);
 
---
--- Indexes for table `familiia`
---
 ALTER TABLE `familiia`
   ADD PRIMARY KEY (`familiaid`);
 
---
--- Indexes for table `habitantes`
---
+
 ALTER TABLE `habitantes`
-  ADD PRIMARY KEY (`id_habitantes`),
-  ADD KEY `familiaid` (`familiaid`),
-  ADD KEY `direccid` (`direccid`),
-  ADD KEY `id_comunidad` (`id_comunidad`);
+  ADD PRIMARY KEY (`id_habitantes`);
 
---
--- Indexes for table `preregistro`
---
-ALTER TABLE `preregistro`
-  ADD PRIMARY KEY (`id_preregistro`);
 
---
--- Indexes for table `user`
---
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
---
--- Indexes for table `userhabitantes`
---
-ALTER TABLE `userhabitantes`
-  ADD PRIMARY KEY (`id_userhab`),
-  ADD KEY `id_habitantes` (`id_habitantes`);
 
---
--- Indexes for table `vocerias`
---
+ALTER TABLE `voceras`
+  ADD PRIMARY KEY (`direccid`);
+
+
 ALTER TABLE `vocerias`
   ADD PRIMARY KEY (`voceriasid`);
 
---
--- Indexes for table `votantes`
---
-ALTER TABLE `votantes`
-  ADD PRIMARY KEY (`votanteid`),
-  ADD KEY `direccid` (`direccid`),
-  ADD KEY `voceriasid` (`voceriasid`),
-  ADD KEY `parentescoid` (`parentescoid`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `consejocomunal`
---
 ALTER TABLE `consejocomunal`
   MODIFY `id_comunidad` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
---
--- AUTO_INCREMENT for table `direccion`
---
-ALTER TABLE `direccion`
-  MODIFY `direccid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=366;
 
---
--- AUTO_INCREMENT for table `familiia`
---
 ALTER TABLE `familiia`
   MODIFY `familiaid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
---
--- AUTO_INCREMENT for table `habitantes`
---
+
 ALTER TABLE `habitantes`
   MODIFY `id_habitantes` int NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `preregistro`
---
-ALTER TABLE `preregistro`
-  MODIFY `id_preregistro` int NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `user`
---
 ALTER TABLE `user`
   MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
---
--- AUTO_INCREMENT for table `userhabitantes`
---
-ALTER TABLE `userhabitantes`
-  MODIFY `id_userhab` int NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `vocerias`
---
+ALTER TABLE `voceras`
+  MODIFY `direccid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=366;
+
+
 ALTER TABLE `vocerias`
-  MODIFY `voceriasid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `votantes`
---
-ALTER TABLE `votantes`
-  MODIFY `votanteid` int NOT NULL AUTO_INCREMENT;
+  MODIFY `voceriasid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+";
+
+
+if($connect->query($sql) === true){
+    echo'<script>
+        alert("Se creo la base de datos con exito");
+        window.location = "../index.php";
+    </script>';
+}else{
+    die("Error al crear base de datos: ".$conexion->error);
+}
+?>

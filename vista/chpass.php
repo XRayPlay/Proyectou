@@ -58,7 +58,7 @@
   <link rel="stylesheet" href="../plantilla/AdminLTE/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../plantilla/AdminLTE/plugins/summernote/summernote-bs4.min.css">
-  <link rel="stylesheet" href="../css/estilo.css">
+  <link rel="stylesheet" href="../public/css/chpass.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -148,18 +148,8 @@
         <div class="info">
           <a href="#" class="d-block">
             <?php
-          $c= new conectar();
-          $conexion=$c->conexion();
-          $query = $conexion -> query ("SELECT * FROM `user` WHERE `usuario`= '".$_SESSION['usuario']."'");
-          while ($row = mysqli_fetch_array($query)) { 
-            $obj= new Estudiante();
-            $sql="SELECT * from representante where id_representante='".$row['id_user']."'";
-            $datos=$obj->listar($sql);
-
-            foreach ($datos as $key) {
-              echo $key['nombres'];
-
-          }}?></a>
+          $c= $_SESSION['usuario'];
+          ?></a>
         </div>
       </div>
 
@@ -170,31 +160,31 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
+               <li class="nav-item menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                Comunidad
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="inicio.php" class="nav-link">
+                <a href="admin1.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Estudiantes Inscritos</p>
+                  <p>Comunas</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="inicio2.php" class="nav-link">
+                <a href="admin2.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Inscripciones de Estudiantes</p>
+                  <p>Postulados a Voceria</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="inicio3.php" class="nav-link">
+                <a href="admin3.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Datos del Perfil</p>
+                  <p>Votantes</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -203,7 +193,6 @@
                   <p>Cambio de Contraseña</p>
                 </a>
               </li>
-
           </li>
 
 
@@ -213,7 +202,7 @@
 
               <p>Cerrar Sesion</p>
             </a>
-        </li>
+          </li>
 
 
       </nav>

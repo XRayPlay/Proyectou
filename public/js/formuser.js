@@ -9,11 +9,11 @@ formulario.addEventListener("submit", e=>{
     let enter = false
 
     // expresiones Regulares
-    let expresionuser = /^[a-zA-Z0-9\_\-]{3,16}$/
+    let expresionuser = /^[a-zA-Z0-9\_\-]{4,16}$/
 
     if(!expresionuser.test(user.value)){
         e.preventDefault()
-        warning += '- Usuario invalido tiene que tener entre 3 y 16 caracteres, solo letras y numeros<br>'
+        warning += '- Usuario invalido tiene que tener entre 4 y 16 caracteres, solo letras y numeros<br>'
         enter = true
     }
     if(pas.value.length < 7  || pas.value.length > 15){
