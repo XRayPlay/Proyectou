@@ -3,7 +3,7 @@
     session_start();
 
     if(isset($_SESSION['usuario'])){
-        header("location: vista/admin.php");
+        header("location: vista/admin1.php");
     }
 
     $fechaDActual= date('d');

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 18, 2024 at 05:04 AM
+-- Generation Time: May 19, 2024 at 05:53 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -481,6 +481,19 @@ CREATE TABLE `habitantes` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `postulado`
+--
+
+CREATE TABLE `postulado` (
+  `postuladoid` int NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
+  `cedula` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `preregistro`
 --
 
@@ -575,6 +588,28 @@ CREATE TABLE `votantes` (
   `parentescoid` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `votos`
+--
+
+CREATE TABLE `votos` (
+  `votosid` int NOT NULL,
+  `voceria1` int NOT NULL,
+  `voceria2` int NOT NULL,
+  `voceria3` int NOT NULL,
+  `voceria4` int NOT NULL,
+  `voceria5` int NOT NULL,
+  `voceria6` int NOT NULL,
+  `voceria7` int NOT NULL,
+  `voceria8` int NOT NULL,
+  `voceria9` int NOT NULL,
+  `voceria10` int NOT NULL,
+  `voceria11` int NOT NULL,
+  `voceria12` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -605,6 +640,12 @@ ALTER TABLE `habitantes`
   ADD KEY `familiaid` (`familiaid`),
   ADD KEY `direccid` (`direccid`),
   ADD KEY `id_comunidad` (`id_comunidad`);
+
+--
+-- Indexes for table `postulado`
+--
+ALTER TABLE `postulado`
+  ADD PRIMARY KEY (`postuladoid`);
 
 --
 -- Indexes for table `preregistro`
@@ -641,6 +682,12 @@ ALTER TABLE `votantes`
   ADD KEY `parentescoid` (`parentescoid`);
 
 --
+-- Indexes for table `votos`
+--
+ALTER TABLE `votos`
+  ADD PRIMARY KEY (`votosid`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -667,6 +714,12 @@ ALTER TABLE `familiia`
 --
 ALTER TABLE `habitantes`
   MODIFY `id_habitantes` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `postulado`
+--
+ALTER TABLE `postulado`
+  MODIFY `postuladoid` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `preregistro`
@@ -697,6 +750,12 @@ ALTER TABLE `vocerias`
 --
 ALTER TABLE `votantes`
   MODIFY `votanteid` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `votos`
+--
+ALTER TABLE `votos`
+  MODIFY `votosid` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

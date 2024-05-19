@@ -57,7 +57,7 @@
   <link rel="stylesheet" href="../plantilla/AdminLTE/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../plantilla/AdminLTE/plugins/summernote/summernote-bs4.min.css">
-  <link rel="stylesheet" href="../css/estilo.css">
+  <link rel="stylesheet" href="../public/css/registropv.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -134,7 +134,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="../asset/images/CPPB.jpeg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Postulación a elecciones</span>
+      <span class="brand-text font-weight-light"></span>
     </a>
 
     <!-- Sidebar -->
@@ -179,13 +179,13 @@
               <li class="nav-item">
                 <a href="admin2.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Postulados a Voceria</p>
+                  <p>Registro de postulados</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="admin3.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Votantes</p>
+                  <p>Registro de votantes</p>
                 </a>
               </li>
               <li class="nav-item">

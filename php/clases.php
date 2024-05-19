@@ -98,7 +98,7 @@
        if(mysqli_num_rows($validar_login) > 0){
             
                 $_SESSION['usuario'] = $data[0];
-                header("location: ../vista/admin.php");
+                header("location: ../vista/admin1.php");
                 exit();
 
         }else{
