@@ -57,7 +57,7 @@
   <link rel="stylesheet" href="../plantilla/AdminLTE/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../plantilla/AdminLTE/plugins/summernote/summernote-bs4.min.css">
-  <link rel="stylesheet" href="../public/css/registropv.css">
+  <link rel="stylesheet" href="../public/css/estilt.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -224,55 +224,55 @@
     <form action="dbestudiantes.php" class="formulario" id="formulario" method="post">
 
       <div class="formulario__grupo" id="grupo__cedula">
-      <label for="cedula" class="formulario__label"></label>
+      <label for="cedula" class="formulario__label">Cédula</label>
       <div class="formulario__grupo-input">
         <div class="input-group">
-          <input type="text" class="formulario__input" name="doc" id="cedula" placeholder="Cedula">
+          <input type="text" class="formulario__input" name="cedula" id="cedula" placeholder="Cedula" max="9">
           <i class="formulario__validacion-estado fas fa-times-circle"></i>
         </div>
       </div>
-      <p class="formulario__input-error">La Cedula debe contener 8 digitos.</p>
+      <p class="formulario__input-error">La Cedula debe comenzar con V, E, P o J y debe contener 8 digitos.</p>
       </div>
 
       <!-- Grupo: Nombre -->
       <div class="formulario__grupo" id="grupo__nombre">
-      <label for="nombre" class="formulario__label"></label>
+      <label for="nombre" class="formulario__label">Nombre</label>
       <div class="formulario__grupo-input">
-      <input type="text" class="formulario__input" name="name" id="nombre" placeholder="Nombre">
+      <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Nombre">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
-      <p class="formulario__input-error">El Nombre tiene que ser de 4 a 30 Caracteres.</p>
+      <p class="formulario__input-error">El Nombre tiene que tener solo letras y espacios.</p>
       </div>
 
       <div class="formulario__grupo" id="grupo__apellido">
-      <label for="apellido" class="formulario__label"></label>
+      <label for="apellido" class="formulario__label">Apellido</label>
       <div class="formulario__grupo-input">
-      <input type="text" class="formulario__input" name="apel" id="apellido" placeholder="Apellido">
+      <input type="text" class="formulario__input" name="apellido" id="apellido" placeholder="Apellido">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
-      <p class="formulario__input-error">El Apellido tiene que ser de 4 a 30 Caracteres.</p>
+      <p class="formulario__input-error">El Apellido tiene que tener solo letras y espacios.</p>
       </div>
 
 
       <!-- Grupo: Contraseña -->
       <div class="formulario__grupo" id="grupo__sexo">
-      <label for="sexo" class="formulario__label"></label>
+      <label for="sexo" class="formulario__label">Sexo</label>
       <div class="formulario__grupo-input">
-      <select type="sexo" class="formulario__input" name="sex" id="sexo" placeholder="Sexo">
+      <select type="sexo" class="formulario__input" name="sexo" id="sexo" placeholder="Sexo">
                   <option value="">Sexo</option>
                   <option value="Masculino">Masculino</option>
                   <option value="Femenino">Femenino</option>
               </select>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
-      <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+      <p class="formulario__input-error">Tienes que seleccionar una de las dos opciones.</p>
       </div>
 
 
       <div class="formulario__grupo" id="grupo__fechanacimiento">
-      <label for="fechanacimiento" class="formulario__label"></label>
+      <label for="fechanacimiento" class="formulario__label">Fecha Nacimiento</label>
       <div class="formulario__grupo-input">
-      <input type="date" class="formulario__input" name="fn" id="fechanacimiento" placeholder="Fecha de Nacimiento">
+      <input type="date" class="formulario__input" name="fechanacimiento" id="fechanacimiento" placeholder="Fecha de Nacimiento">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
       <p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
@@ -280,9 +280,9 @@
 
       <!-- Grupo: Correo Electronico -->
       <div class="formulario__grupo" id="grupo__lugarnacimiento">
-      <label for="lugarnacimiento" class="formulario__label"></label>
+      <label for="lugarnacimiento" class="formulario__label">Lugar Nacimiento</label>
       <div class="formulario__grupo-input">
-      <input type="text" class="formulario__input" name="ln" id="lugarnacimiento" placeholder="Lugar de Nacimiento">
+      <input type="text" class="formulario__input" name="lugarnacimiento" id="lugarnacimiento" placeholder="Lugar de Nacimiento">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
       <p class="formulario__input-error">El Lugar de Nacimiento solo puede contener letras.</p>
@@ -290,47 +290,28 @@
 
       <!-- Grupo: Teléfono -->
       <div class="formulario__grupo" id="grupo__condicionvivienda">
-      <label for="condicionvivienda" class="formulario__label"></label>
+      <label for="condicionvivienda" class="formulario__label">Condicion Vivienda</label>
       <div class="formulario__grupo-input">
-      <select type="text" class="formulario__input" name="con" id="condicionvivienda" placeholder="Condicion de Vivienda">
-                <option value="">Condicion de Vivienda</option>
-                <option value="mama">Mama</option>
-                <option value="papa y mama">papa y mama</option>
-                <option value="papa">papa</option>
-              </select>
+      <input type="text" class="formulario__input" name="condicionvivienda" id="condicionvivienda" placeholder="Condicion de Vivienda">
+
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
       <p class="formulario__input-error">La condicion de vivienda.</p>
       </div>
 
       <div class="formulario__grupo" id="grupo__catedra">
-      <label for="catedra" class="formulario__label"></label>
+      <label for="catedra" class="formulario__label">Catedra</label>
       <div class="formulario__grupo-input">
-      <select class="formulario__input" name="aec" id="catedra" placeholder="Catedra Extra Fuera de la institucion">
-                  <option value="">Catedra Extra Fuera de la institucion</option>
-                  <option value="1">Ninguno</option>
-                  <option value="2">Baloncesto</option>
-                  <option value="3">Fútbol</option>
-                  <option value="4">Tenis</option>
-                  <option value="5">Golf</option>
-                  <option value="6">Béisbol</option>
-                  <option value="7">Ciclismo</option>
-                  <option value="8">Voleibol</option>
-                  <option value="9">Boxeo</option>
-              </select>
+      <input class="formulario__input" name="catedra" id="catedra" placeholder="Catedra Extra Fuera de la institucion">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
       <p class="formulario__input-error">La condicion de vivienda.</p>
       </div>
 
       <div class="formulario__grupo" id="grupo__aulaintegrada">
-      <label for="aulaintegrada" class="formulario__label"></label>
+      <label for="aulaintegrada" class="formulario__label">Aula Integrada</label>
       <div class="formulario__grupo-input">
-      <select class="formulario__input" name="ai" id="aulaintegrada">
-                  <option value="1">Aula Integrada</option>
-                  <option value="2">No</option>
-                  <option value="3">Si</option>
-              </select>
+      <input class="formulario__input" name="aulaintegrada" id="aulaintegrada">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
       <p class="formulario__input-error">La condicion de vivienda.</p>
@@ -341,27 +322,14 @@
       </div>
 
       <div class="formulario__grupo formulario__grupo-btn-enviar">
-        <button type="submit" name="btn111" class="formulario__btn">Enviar</button>
+        <button type="submit" name="btn" class="formulario__btn">Enviar</button>
         <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Datos enviados exitosamente!</p>
 
 
       </div>
 
-      <input type="hidden" name="idrepre" value="
-      <?php
-        $c = new conectar();
-        $conexion = $c->conexion();
-        $query = $conexion -> query ("SELECT * FROM `user` WHERE `usuario`= '".$_SESSION['usuario']."'");
-        while ($row = mysqli_fetch_array($query)) {
-          echo $row['id_user'];
-
-          }?>
-      ">
-      <input type="hidden" name="idgrado" value="1">
-      <input type="hidden" name="idnivel" value="1">
-                            <p class="warnings" id="warnings"></p>
     </form>
-    <script src="../asset/js/formestudiante.js"></script>
+    <script src="../public/js/formestudiante.js"></script>
 
 
 
