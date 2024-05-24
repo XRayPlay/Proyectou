@@ -3,13 +3,26 @@ const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
     cedula: /^[V|E|J|P][0-9]{7,8}$/,
-    apellido: /^[a-zA-ZÁ-ÿ]{3,40}$/,
-    lugarnacimiento: /^[a-zA-ZÁ-ÿ]{3,40}$/,
     nombre: /^[a-zA-ZÁ-ÿ]{3,40}$/,
+    apellido: /^[a-zA-ZÁ-ÿ]{3,40}$/,
     sexo: /^[a-zA-ZÁ-ÿ]{9}$/,
-    condicions: /^\d{2,14}$/,
-    actextra: /^\d{1,2}$/,
-    correo: /^[a-zA-Z0-9_.+-]+@[gmail|hotmail|yahoo]+\.[com]+$/
+    lugarnacimiento: /^[a-zA-ZÁ-ÿ]{3,40}$/,
+    condicionvivienda: /^\d{2,14}$/,
+    catedra: /^\d{4,10}$/,
+    aulaintegrada: /^\d{4,10}$/,
+    correo: /^[a-zA-Z0-9_.+-]+@[gmail|hotmail|yahoo]+\.[com]+$/,
+    password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/
+}
+
+const campos = {
+    cedula: false,
+    nombre: false,
+    apellido: false,
+    lugarnacimiento: false,
+    condicionvivienda: false,
+    catedra: false,
+    aulaintegrada: false,
+    password: false
 }
 
 const validarcampo = (expresion, input, campo) => {
@@ -19,30 +32,35 @@ const validarcampo = (expresion, input, campo) => {
         document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
         document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
         document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
+        campos[campo] = true;
     } else {
         document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');
         document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
         document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
         document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
         document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
-
+        campos[campo] = false;
     }
 }
 
 
-const validarpassword2 = (expresion, input, campo) => {
-    if(password1 !== password2){
+const validarpassword = () => {
+    const inputpassword = document.getElementById('password');
+    const inputpassword2 = document.getElementById('password2');
+    if(inputpassword.value !== inputpassword2.value){
         document.getElementById('grupo__password2').classList.remove('formulario__grupo-correcto');
         document.getElementById('grupo__password2').classList.add('formulario__grupo-incorrecto');
         document.querySelector('#grupo__password2 i').classList.remove('fa-check-circle');
         document.querySelector('#grupo__password2 i').classList.add('fa-times-circle');
         document.querySelector('#grupo__password2 .formulario__input-error').classList.add('formulario__input-error-activo');
+        campos['password'] = false;
     } else {
         document.getElementById('grupo__password2').classList.remove('formulario__grupo-incorrecto');
         document.getElementById('grupo__password2').classList.add('formulario__grupo-correcto');
         document.querySelector('#grupo__password2 i').classList.remove('fa-times-circle');
         document.querySelector('#grupo__password2 i').classList.add('fa-check-circle');
         document.querySelector('#grupo__password2 .formulario__input-error').classList.remove('formulario__input-error-activo');
+        campos['password'] = true;
     }
 }
 
@@ -57,9 +75,6 @@ const validarFormulario = (e) => {
         case "apellido":
             validarcampo(expresiones.apellido, e.target, 'apellido');
         break;
-        case "sexo":
-            validarcampo(expresiones.sexo, e.target, 'sexo');
-        break;
         case "lugarnacimiento":
             validarcampo(expresiones.lugarnacimiento, e.target, 'lugarnacimiento');
         break;
@@ -71,6 +86,13 @@ const validarFormulario = (e) => {
         break;
         case "aulaintegrada":
             validarcampo(expresiones.aulaintegrada, e.target, 'aulaintegrada');
+        break;
+        case "password":
+            validarcampo(expresiones.password, e.target, 'password');
+            validarpassword();
+        break;
+        case "password2":
+            validarpassword();
         break;
     }
 }
@@ -84,6 +106,13 @@ inputs.forEach((input) => {
 
 formulario.addEventListener('submit', (e) => {
     e.preventDefault()
+
+    if(campos.cedula && campos.nombre && campos.apellido && campos.lugarnacimiento && campos.condicionvivienda && campos.catedra && campos.aulaintegrada){
+        formulario.reset();
+    }
+    if(campos.password){
+        formulario.reset();
+    }
 })
 
 

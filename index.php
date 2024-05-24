@@ -52,10 +52,12 @@
           <input type="password" name="pass" id="pass" Required>
           <label>Contraseña</label>
         </div>
-        <div class="recordar">¿Olvidaste la contraseña?</div>
+        <div class="recordar">
+          <a href="#">¿Has olvidado tu contraseña?</a>
+      </div>
         <input type="submit" value="Entrar">                    
         <div class="registrarse">
-          <a href="registro.php">Registrarse como postulado o votante</a>
+          <a href="registro.php"></a>
         </div>
         <p class="warning" id="warning"></p>
        </form>
