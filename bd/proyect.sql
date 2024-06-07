@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `proyect`
 --
-CREATE DATABASE IF NOT EXISTS `proyect` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS `proyect`;
 USE `proyect`;
 
 -- --------------------------------------------------------
@@ -31,15 +31,15 @@ USE `proyect`;
 
 CREATE TABLE `consejocomunal` (
   `id_comunidad` int NOT NULL,
-  `nombrecomuna` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nombreconsejocomunal` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nombrecomuna` varchar(50) NOT NULL,
+  `nombreconsejocomunal` varchar(50) NOT NULL,
   `N_MPPCPS` int NOT NULL,
-  `numeroregistro` varchar(18) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `rifconsejocomunal` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `numeroregistro` varchar(18) NOT NULL,
+  `rifconsejocomunal` varchar(13) NOT NULL,
   `numerofamilia` int NOT NULL,
   `numeropersonas` int NOT NULL,
   `direccion` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `consejocomunal`
@@ -60,7 +60,7 @@ CREATE TABLE `direccion` (
   `letra` varchar(5) NOT NULL,
   `piso` varchar(5) NOT NULL,
   `apto` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `direccion`
@@ -443,7 +443,7 @@ CREATE TABLE `familiia` (
   `familiaid` int NOT NULL,
   `parentesco` varchar(20) NOT NULL,
   `descripcion` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `familiia`
@@ -476,7 +476,7 @@ CREATE TABLE `habitantes` (
   `familiaid` int NOT NULL,
   `direccid` int NOT NULL,
   `id_comunidad` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -490,7 +490,7 @@ CREATE TABLE `postulado` (
   `imagen` mediumblob NOT NULL,
   `habitantesid` int NOT NULL,
   `voceriasid` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -501,7 +501,7 @@ CREATE TABLE `postulado` (
 CREATE TABLE `roles` (
   `idrol` int NOT NULL,
   `descripcion` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `roles`
@@ -521,7 +521,7 @@ CREATE TABLE `user` (
   `usuario` varchar(15) NOT NULL,
   `pass` varchar(256) NOT NULL,
   `idrol` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `user`
@@ -538,10 +538,10 @@ INSERT INTO `user` (`id_user`, `usuario`, `pass`, `idrol`) VALUES
 
 CREATE TABLE `vocerias` (
   `voceriasid` int NOT NULL,
-  `nomvoce` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nomvoce` varchar(100) NOT NULL,
   `nrovocep` int NOT NULL,
   `nrovoces` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Dumping data for table `vocerias`
@@ -571,7 +571,7 @@ CREATE TABLE `votantes` (
   `votanteid` int NOT NULL,
   `limitevoto` int NOT NULL,
   `habitantesid` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 --
 -- Indexes for dumped tables
