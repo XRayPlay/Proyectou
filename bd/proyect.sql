@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jun 05, 2024 at 06:45 PM
--- Server version: 8.0.30
--- PHP Version: 8.1.10
+-- Host: 127.0.0.1
+-- Generation Time: Jun 08, 2024 at 12:29 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `proyect`
 --
-CREATE DATABASE IF NOT EXISTS `proyect`;
+CREATE DATABASE IF NOT EXISTS `proyect` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `proyect`;
 
 -- --------------------------------------------------------
@@ -30,16 +30,16 @@ USE `proyect`;
 --
 
 CREATE TABLE `consejocomunal` (
-  `id_comunidad` int NOT NULL,
+  `id_comunidad` int(11) NOT NULL,
   `nombrecomuna` varchar(50) NOT NULL,
   `nombreconsejocomunal` varchar(50) NOT NULL,
-  `N_MPPCPS` int NOT NULL,
+  `N_MPPCPS` int(11) NOT NULL,
   `numeroregistro` varchar(18) NOT NULL,
   `rifconsejocomunal` varchar(13) NOT NULL,
-  `numerofamilia` int NOT NULL,
-  `numeropersonas` int NOT NULL,
+  `numerofamilia` int(11) NOT NULL,
+  `numeropersonas` int(11) NOT NULL,
   `direccion` varchar(50) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `consejocomunal`
@@ -55,12 +55,12 @@ INSERT INTO `consejocomunal` (`id_comunidad`, `nombrecomuna`, `nombreconsejocomu
 --
 
 CREATE TABLE `direccion` (
-  `direccid` int NOT NULL,
+  `direccid` int(11) NOT NULL,
   `bloque` varchar(5) NOT NULL,
   `letra` varchar(5) NOT NULL,
   `piso` varchar(5) NOT NULL,
   `apto` varchar(5) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `direccion`
@@ -440,10 +440,10 @@ INSERT INTO `direccion` (`direccid`, `bloque`, `letra`, `piso`, `apto`) VALUES
 --
 
 CREATE TABLE `familiia` (
-  `familiaid` int NOT NULL,
+  `familiaid` int(11) NOT NULL,
   `parentesco` varchar(20) NOT NULL,
   `descripcion` text NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `familiia`
@@ -467,16 +467,16 @@ INSERT INTO `familiia` (`familiaid`, `parentesco`, `descripcion`) VALUES
 --
 
 CREATE TABLE `habitantes` (
-  `id_habitantes` int NOT NULL,
+  `id_habitantes` int(11) NOT NULL,
+  `cedula` varchar(12) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `apellido` varchar(20) NOT NULL,
   `sexo` varchar(10) NOT NULL,
-  `fechanacimiento` date NOT NULL,
-  `cedula` varchar(12) NOT NULL,
-  `familiaid` int NOT NULL,
-  `direccid` int NOT NULL,
-  `id_comunidad` int NOT NULL
-) ;
+  `fechanacimiento` date DEFAULT NULL,
+  `familiaid` int(11) NOT NULL,
+  `direccid` int(11) NOT NULL,
+  `id_comunidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -485,12 +485,12 @@ CREATE TABLE `habitantes` (
 --
 
 CREATE TABLE `postulado` (
-  `postuladoid` int NOT NULL,
-  `conteovotos` int NOT NULL,
+  `postuladoid` int(11) NOT NULL,
+  `conteovotos` int(11) NOT NULL,
   `imagen` mediumblob NOT NULL,
-  `habitantesid` int NOT NULL,
-  `voceriasid` int NOT NULL
-) ;
+  `habitantesid` int(11) NOT NULL,
+  `voceriasid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -499,9 +499,9 @@ CREATE TABLE `postulado` (
 --
 
 CREATE TABLE `roles` (
-  `idrol` int NOT NULL,
+  `idrol` int(11) NOT NULL,
   `descripcion` varchar(20) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `roles`
@@ -517,11 +517,11 @@ INSERT INTO `roles` (`idrol`, `descripcion`) VALUES
 --
 
 CREATE TABLE `user` (
-  `id_user` int NOT NULL,
+  `id_user` int(11) NOT NULL,
   `usuario` varchar(15) NOT NULL,
   `pass` varchar(256) NOT NULL,
-  `idrol` int NOT NULL
-) ;
+  `idrol` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
@@ -537,11 +537,11 @@ INSERT INTO `user` (`id_user`, `usuario`, `pass`, `idrol`) VALUES
 --
 
 CREATE TABLE `vocerias` (
-  `voceriasid` int NOT NULL,
+  `voceriasid` int(11) NOT NULL,
   `nomvoce` varchar(100) NOT NULL,
-  `nrovocep` int NOT NULL,
-  `nrovoces` int NOT NULL
-) ;
+  `nrovocep` int(11) NOT NULL,
+  `nrovoces` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vocerias`
@@ -568,10 +568,10 @@ INSERT INTO `vocerias` (`voceriasid`, `nomvoce`, `nrovocep`, `nrovoces`) VALUES
 --
 
 CREATE TABLE `votantes` (
-  `votanteid` int NOT NULL,
-  `limitevoto` int NOT NULL,
-  `habitantesid` int NOT NULL
-) ;
+  `votanteid` int(11) NOT NULL,
+  `limitevoto` int(11) NOT NULL,
+  `habitantesid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -646,55 +646,80 @@ ALTER TABLE `votantes`
 -- AUTO_INCREMENT for table `consejocomunal`
 --
 ALTER TABLE `consejocomunal`
-  MODIFY `id_comunidad` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_comunidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `direccion`
 --
 ALTER TABLE `direccion`
-  MODIFY `direccid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=366;
+  MODIFY `direccid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=366;
 
 --
 -- AUTO_INCREMENT for table `familiia`
 --
 ALTER TABLE `familiia`
-  MODIFY `familiaid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `familiaid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `habitantes`
 --
 ALTER TABLE `habitantes`
-  MODIFY `id_habitantes` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_habitantes` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `postulado`
 --
 ALTER TABLE `postulado`
-  MODIFY `postuladoid` int NOT NULL AUTO_INCREMENT;
+  MODIFY `postuladoid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `idrol` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idrol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `vocerias`
 --
 ALTER TABLE `vocerias`
-  MODIFY `voceriasid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `voceriasid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `votantes`
 --
 ALTER TABLE `votantes`
-  MODIFY `votanteid` int NOT NULL AUTO_INCREMENT;
+  MODIFY `votanteid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `habitantes`
+--
+ALTER TABLE `habitantes`
+  ADD CONSTRAINT `habitantes_ibfk_1` FOREIGN KEY (`familiaid`) REFERENCES `familiia` (`familiaid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `habitantes_ibfk_2` FOREIGN KEY (`id_comunidad`) REFERENCES `consejocomunal` (`id_comunidad`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `habitantes_ibfk_3` FOREIGN KEY (`direccid`) REFERENCES `direccion` (`direccid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `postulado`
+--
+ALTER TABLE `postulado`
+  ADD CONSTRAINT `postulado_ibfk_2` FOREIGN KEY (`voceriasid`) REFERENCES `vocerias` (`voceriasid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `postulado_ibfk_3` FOREIGN KEY (`habitantesid`) REFERENCES `habitantes` (`id_habitantes`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`idrol`) REFERENCES `roles` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

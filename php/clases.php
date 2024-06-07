@@ -2,21 +2,6 @@
     include 'conexion_be.php';
     class usuario{
 
-        public function actualizarUsuarioa($datos){
-            $c= new conectar();
-            $conexion=$c->conexion();
-            $query = "UPDATE `user` SET `pass`='$datos[0]' WHERE `id_user`= '$datos[1]'";
-            $ejecutar = mysqli_query($conexion, $query);
-            echo'<script>
-                alert("Se Cambio la contraseña con exito");
-                window.location = "admin.php";
-                </script>';
-            exit();
-
-        }
-
-
-
         public function actualizarUsuario($datos){
             $c= new conectar();
             $conexion=$c->conexion();
@@ -27,27 +12,12 @@
                 window.location = "../index.php";
                 </script>';
             exit();
-
         }
-
-
-
-
-
-
-
-
 
         public function registrarDatos($datos){
             $c= new conectar();
             $conexion=$c->conexion();
-
-
-            $query = "
-            INSERT INTO habitantes(cedula, nombre, apellido, sexo, fechanacimiento, familiaid, direccid, id_comunidad) VALUES('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]','$datos[5]','$datos[6]','$datos[7]')
-            ";
-
-
+            $query = "INSERT INTO habitantes (cedula, nombre, apellido, sexo, fechanacimiento, familiaid, direccid, id_comunidad) VALUES('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]','$datos[5]','$datos[6]','$datos[7]')";
     $verificar_usuario = mysqli_query($conexion, "SELECT * FROM habitantes WHERE cedula='$datos[0]'");
 
         if(mysqli_num_rows($verificar_usuario) > 0){

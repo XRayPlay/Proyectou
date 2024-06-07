@@ -190,16 +190,13 @@
                   <p>Registro de votantes</p>
                 </a>
               </li>
-          </li>
 
-          
-              
-          
+          </li>
 
 
         </ul>
 
-          <li class="nav-item menu-open">
+        <li class="nav-item menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -227,20 +224,21 @@
                 </a>
               </li>
           </li>
-        <li class="nav-item">
+          <li class="nav-item">
                 <a href="chpass.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cambio de Contraseña</p>
                 </a>
-              </li>
-        <li class="nav-item">
+          </li>
+          
+      </nav>
+
+      <li class="nav-item">
             <a href="../php/cerrar_sesion.php" class="nav-link">
 
               <p>Cerrar Sesion</p>
             </a>
           </li>
-
-      </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

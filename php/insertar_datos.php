@@ -12,15 +12,16 @@
     $comunidad = $_POST['comunidad'];
 
     $datos=array(
-        $cedula,
-        $nombre,
-        $apellido,
+        $cedula, 
+        $nombre, 
+        $apellido, 
         $sexo, 
-        $fechanacimiento,
-        $familia,
-        $direccion,
+        $fechanacimiento, 
+        $familia, 
+        $direccion, 
         $comunidad
     );
+
 
     $obj= new usuario;
     $obj->registrarDatos($datos);

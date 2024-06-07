@@ -229,15 +229,14 @@
                 </a>
           </li>
           
-        <li class="nav-item">
+      </nav>
+
+      <li class="nav-item">
             <a href="../php/cerrar_sesion.php" class="nav-link">
 
               <p>Cerrar Sesion</p>
             </a>
           </li>
-
-
-      </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

@@ -229,15 +229,14 @@
                 </a>
           </li>
           
-        <li class="nav-item">
+      </nav>
+
+      <li class="nav-item">
             <a href="../php/cerrar_sesion.php" class="nav-link">
 
               <p>Cerrar Sesion</p>
             </a>
           </li>
-
-
-      </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -256,10 +255,10 @@
     <form action="../php/insertar_datos.php" class="formulario" id="formulario" method="post">
 
       <div class="formulario__grupo" id="grupo__cedula">
-      <label for="cedula" class="formulario__label">Cédula</label>
+      <label for="cedula" class="formulario__label">Cedula</label>
       <div class="formulario__grupo-input">
         <div class="input-group">
-          <input type="text" class="formulario__input" name="cedula" id="cedula" placeholder="cedula" max="9">
+          <input type="text" class="formulario__input" name="cedula" id="cedula" placeholder="cedula" max="9" value="">
           <i class="formulario__validacion-estado fas fa-times-circle"></i>
         </div>
       </div>
@@ -289,7 +288,6 @@
       <label for="sexo" class="formulario__label">Sexo</label>
       <div class="formulario__grupo-input">
       <select class="formulario__input" name="sexo" id="sexo" placeholder="">
-        <option>Seleccione</option>
         <option value="F">Femenino</option>
         <option value="M">Masculino</option>
       </select>
@@ -312,7 +310,7 @@
       <label for="familia" class="formulario__label">Familia</label>
       <div class="formulario__grupo-input">
       <select class="formulario__input" name="familia" id="familia" placeholder="">
-        <option>Seleccione</option>
+
         <option value="1">Jefe de Familia</option>
         <option value="2">Pareja</option>
         <option value="3">Hijo(a)</option>
@@ -331,7 +329,7 @@
       <div class="formulario__grupo" id="grupo__direccion">
       <label for="direccion" class="formulario__label">Direccion</label>
       <div class="formulario__grupo-input">
-      <input type="number" class="formulario__input" name="direccion" id="direccion" placeholder="direccion">
+      <input type="varchar" class="formulario__input" name="direccion" id="direccion" placeholder="direccion">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
       <p class="formulario__input-error"></p>
@@ -341,7 +339,7 @@
       <label for="comunidad" class="formulario__label">Comunidad</label>
       <div class="formulario__grupo-input">
       <select class="formulario__input" name="comunidad" id="comunidad" placeholder="">
-        <option>Seleccione</option>
+
         <option value="1">Comuna Socialista Sierra Maestra</option>
       </select>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
