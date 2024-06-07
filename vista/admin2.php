@@ -216,9 +216,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="admin6.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>#</p>
+                  <p>Registro habitante</p>
                 </a>
               </li>
           </li>

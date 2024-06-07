@@ -38,6 +38,56 @@
 
 
 
+        public function registrarDatos($datos){
+            $c= new conectar();
+            $conexion=$c->conexion();
+
+
+            $query = "
+            INSERT INTO habitantes(cedula, nombre, apellido, sexo, fechanacimiento, familiaid, direccid, id_comunidad) VALUES('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]','$datos[5]','$datos[6]','$datos[7]')
+            ";
+
+
+    $verificar_usuario = mysqli_query($conexion, "SELECT * FROM habitantes WHERE cedula='$datos[0]'");
+
+        if(mysqli_num_rows($verificar_usuario) > 0){
+            echo'<script>
+                alert("Este usuario ya se encuentra registrado");
+                window.location = "../index.php";
+                </script>';
+            exit();
+        } else {
+            $ejecutar = mysqli_query($conexion, $query);
+
+            if($ejecutar == 1){
+                echo'<script>
+                alert("Se Registro los datos con exito");
+                window.location = "../index.php";
+                </script>';
+                exit();
+            }else{
+                echo'<script>
+                alert("Fallo el Registro");
+                window.location = "../index.php";
+                </script>';
+                exit();
+            }
+    }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public function registrar($datos){
 
             $c= new conectar();

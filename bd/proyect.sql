@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 19, 2024 at 05:53 AM
+-- Generation Time: Jun 05, 2024 at 06:45 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -486,23 +486,29 @@ CREATE TABLE `habitantes` (
 
 CREATE TABLE `postulado` (
   `postuladoid` int NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `apellido` varchar(50) NOT NULL,
-  `cedula` int NOT NULL
+  `conteovotos` int NOT NULL,
+  `imagen` mediumblob NOT NULL,
+  `habitantesid` int NOT NULL,
+  `voceriasid` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `preregistro`
+-- Table structure for table `roles`
 --
 
-CREATE TABLE `preregistro` (
-  `id_preregistro` int NOT NULL,
-  `Nombre` int NOT NULL,
-  `Apellido` int NOT NULL,
-  `Asignacion` int NOT NULL
+CREATE TABLE `roles` (
+  `idrol` int NOT NULL,
+  `descripcion` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`idrol`, `descripcion`) VALUES
+(1, 'administrador');
 
 -- --------------------------------------------------------
 
@@ -513,28 +519,16 @@ CREATE TABLE `preregistro` (
 CREATE TABLE `user` (
   `id_user` int NOT NULL,
   `usuario` varchar(15) NOT NULL,
-  `pass` varchar(256) NOT NULL
+  `pass` varchar(256) NOT NULL,
+  `idrol` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `usuario`, `pass`) VALUES
-(1, 'admin', '12345678');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `userhabitantes`
---
-
-CREATE TABLE `userhabitantes` (
-  `id_userhab` int NOT NULL,
-  `usuariohab` varchar(16) NOT NULL,
-  `passhab` varchar(15) NOT NULL,
-  `id_habitantes` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+INSERT INTO `user` (`id_user`, `usuario`, `pass`, `idrol`) VALUES
+(1, 'admin', '12345678', 1);
 
 -- --------------------------------------------------------
 
@@ -575,39 +569,8 @@ INSERT INTO `vocerias` (`voceriasid`, `nomvoce`, `nrovocep`, `nrovoces`) VALUES
 
 CREATE TABLE `votantes` (
   `votanteid` int NOT NULL,
-  `cedula` int NOT NULL,
-  `apellido` varchar(50) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `fecha-nac` date NOT NULL,
-  `fecha-elec` date NOT NULL,
-  `edad` int NOT NULL,
-  `votar` int NOT NULL,
-  `sexo` varchar(10) NOT NULL,
-  `direccid` int NOT NULL,
-  `voceriasid` int NOT NULL,
-  `parentescoid` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `votos`
---
-
-CREATE TABLE `votos` (
-  `votosid` int NOT NULL,
-  `voceria1` int NOT NULL,
-  `voceria2` int NOT NULL,
-  `voceria3` int NOT NULL,
-  `voceria4` int NOT NULL,
-  `voceria5` int NOT NULL,
-  `voceria6` int NOT NULL,
-  `voceria7` int NOT NULL,
-  `voceria8` int NOT NULL,
-  `voceria9` int NOT NULL,
-  `voceria10` int NOT NULL,
-  `voceria11` int NOT NULL,
-  `voceria12` int NOT NULL
+  `limitevoto` int NOT NULL,
+  `habitantesid` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -645,26 +608,22 @@ ALTER TABLE `habitantes`
 -- Indexes for table `postulado`
 --
 ALTER TABLE `postulado`
-  ADD PRIMARY KEY (`postuladoid`);
+  ADD PRIMARY KEY (`postuladoid`),
+  ADD KEY `habitantesid` (`habitantesid`),
+  ADD KEY `voceriasid` (`voceriasid`);
 
 --
--- Indexes for table `preregistro`
+-- Indexes for table `roles`
 --
-ALTER TABLE `preregistro`
-  ADD PRIMARY KEY (`id_preregistro`);
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`idrol`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
-
---
--- Indexes for table `userhabitantes`
---
-ALTER TABLE `userhabitantes`
-  ADD PRIMARY KEY (`id_userhab`),
-  ADD KEY `id_habitantes` (`id_habitantes`);
+  ADD PRIMARY KEY (`id_user`),
+  ADD KEY `idrol` (`idrol`);
 
 --
 -- Indexes for table `vocerias`
@@ -677,15 +636,7 @@ ALTER TABLE `vocerias`
 --
 ALTER TABLE `votantes`
   ADD PRIMARY KEY (`votanteid`),
-  ADD KEY `direccid` (`direccid`),
-  ADD KEY `voceriasid` (`voceriasid`),
-  ADD KEY `parentescoid` (`parentescoid`);
-
---
--- Indexes for table `votos`
---
-ALTER TABLE `votos`
-  ADD PRIMARY KEY (`votosid`);
+  ADD KEY `habitantesid` (`habitantesid`) USING BTREE;
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -722,22 +673,16 @@ ALTER TABLE `postulado`
   MODIFY `postuladoid` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `preregistro`
+-- AUTO_INCREMENT for table `roles`
 --
-ALTER TABLE `preregistro`
-  MODIFY `id_preregistro` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `roles`
+  MODIFY `idrol` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `userhabitantes`
---
-ALTER TABLE `userhabitantes`
-  MODIFY `id_userhab` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `vocerias`
@@ -750,12 +695,6 @@ ALTER TABLE `vocerias`
 --
 ALTER TABLE `votantes`
   MODIFY `votanteid` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `votos`
---
-ALTER TABLE `votos`
-  MODIFY `votosid` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,5 +1,5 @@
 <?php
-    require_once "../php/clases.php";
+  require_once "../php/clases.php";
 
     
     session_start();
@@ -37,7 +37,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gestion - UECPPB</title>
-  <link rel="stylesheet" href="../public/css/table.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -65,7 +64,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="../plantilla/AdminLTE/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
   </div>
 
   <!-- Navbar -->
@@ -133,7 +132,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="admin1.php" class="brand-link">
       <img src="../asset/Ponlecorazon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Elecciones</span>
     </a>
@@ -148,10 +147,9 @@
         <div class="info">
           <a href="#" class="d-block">
             <?php
-
-          echo $_SESSION['usuario'];
-
-        ?></a>
+          $userr= $_SESSION['usuario'];
+          echo $userr;
+          ?></a>
         </div>
       </div>
 
@@ -193,10 +191,6 @@
 
           </li>
 
-          
-              
-          
-
 
         </ul>
 
@@ -216,30 +210,32 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin5.php" class="nav-link active">
+                <a href="admin5.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Resultados</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin6.php" class="nav-link">
+                <a href="admin6.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Registro habitante</p>
                 </a>
               </li>
-        </li>
-        <li class="nav-item">
+          </li>
+          <li class="nav-item">
                 <a href="chpass.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cambio de Contraseña</p>
                 </a>
-              </li>
+          </li>
+          
         <li class="nav-item">
             <a href="../php/cerrar_sesion.php" class="nav-link">
 
               <p>Cerrar Sesion</p>
             </a>
           </li>
+
 
       </nav>
       <!-- /.sidebar-menu -->
@@ -251,58 +247,127 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
 
-      <main>
+    <main>
 
-      <div class="text-right mb-2">
-        <a href="fpdf/pdfvistad.php" target="_blank" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i>Generar Reportes</a>
+    <center><h1 class="titulo">Registro Habitantes</h1></center><br><br>
+    
+
+
+    <form action="../php/insertar_datos.php" class="formulario" id="formulario" method="post">
+
+      <div class="formulario__grupo" id="grupo__cedula">
+      <label for="cedula" class="formulario__label">Cédula</label>
+      <div class="formulario__grupo-input">
+        <div class="input-group">
+          <input type="text" class="formulario__input" name="cedula" id="cedula" placeholder="cedula" max="9">
+          <i class="formulario__validacion-estado fas fa-times-circle"></i>
+        </div>
+      </div>
+      <p class="formulario__input-error">La Cedula debe comenzar con V, E, P o J y debe contener 8 digitos.</p>
       </div>
 
-      <div class="text-right mb-2">
-        <input type="search" placeholder="buscar...">
+
+      <div class="formulario__grupo" id="grupo__nombre">
+      <label for="nombre" class="formulario__label">Nombre</label>
+      <div class="formulario__grupo-input">
+      <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Nombre">
+      <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
+      <p class="formulario__input-error">El Nombre tiene que tener solo letras y espacios.</p>
       </div>
 
-      <table border="1" class="table table-bordered table-hover w-100">
+      <div class="formulario__grupo" id="grupo__apellido">
+      <label for="apellido" class="formulario__label">Apellido</label>
+      <div class="formulario__grupo-input">
+      <input type="text" class="formulario__input" name="apellido" id="apellido" placeholder="Apellido">
+      <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
+      <p class="formulario__input-error">El Apellido tiene que tener solo letras y espacios.</p>
+      </div>
 
-      
-        <thead>
-        <tr>
-                                    <th><b>Comuna</b></th>
-                                    <th><b>Consejo Comunal</b></th>
-                                    <th><b>Nro de Familia</b></th>
-                                    <th><b>Nro de Personas</b></th>
-
-        </tr>
-        </thead>
-
-      <?php
-        $c= new conectar();
-        $conexion=$c->conexion();
-        $query = $conexion -> query ("SELECT * FROM `consejocomunal`");
-        while ($row = mysqli_fetch_array($query)) { 
-
-
-
-
-          
-
-      ?>
-
-          <tbody>
-            <tr>
-              <th><b><?php echo $row['nombrecomuna']; ?></b></th>
-              <th><b><?php echo $row['nombreconsejocomunal']; ?></b></th>
-              <th><b><?php echo $row['numerofamilia']; ?></b></th>
-              <th><b><?php echo $row['numeropersonas']; ?></b></th>
+      <div class="formulario__grupo" id="grupo__sexo">
+      <label for="sexo" class="formulario__label">Sexo</label>
+      <div class="formulario__grupo-input">
+      <select class="formulario__input" name="sexo" id="sexo" placeholder="">
+        <option>Seleccione</option>
+        <option value="F">Femenino</option>
+        <option value="M">Masculino</option>
+      </select>
+      <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
+      <p class="formulario__input-error"></p>
+      </div>
 
 
-            </tr>
-          </tbody>
-      
-      <?php
-          }
-      ?>
+      <div class="formulario__grupo" id="grupo__fechanacimiento">
+      <label for="fechanacimiento" class="formulario__label">fecha de nacimiento</label>
+      <div class="formulario__grupo-input">
+      <input type="date" class="formulario__input" name="fechanacimiento" id="fechanacimiento" placeholder="">
+      <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
+      <p class="formulario__input-error"></p>
+      </div>
 
-   </table>
+      <div class="formulario__grupo" id="grupo__familia">
+      <label for="familia" class="formulario__label">Familia</label>
+      <div class="formulario__grupo-input">
+      <select class="formulario__input" name="familia" id="familia" placeholder="">
+        <option>Seleccione</option>
+        <option value="1">Jefe de Familia</option>
+        <option value="2">Pareja</option>
+        <option value="3">Hijo(a)</option>
+        <option value="4">Padre</option>
+        <option value="5">Madre</option>
+        <option value="6">Abuelo(a)</option>
+        <option value="7">Nuero(a)</option>
+        <option value="8">Sobrino(a)</option>
+        <option value="9">Tio(a)</option>
+      </select>
+            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
+      <p class="formulario__input-error"></p>
+      </div>
+
+      <div class="formulario__grupo" id="grupo__direccion">
+      <label for="direccion" class="formulario__label">Direccion</label>
+      <div class="formulario__grupo-input">
+      <input type="number" class="formulario__input" name="direccion" id="direccion" placeholder="direccion">
+      <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
+      <p class="formulario__input-error"></p>
+      </div>
+
+      <div class="formulario__grupo" id="grupo__comunidad">
+      <label for="comunidad" class="formulario__label">Comunidad</label>
+      <div class="formulario__grupo-input">
+      <select class="formulario__input" name="comunidad" id="comunidad" placeholder="">
+        <option>Seleccione</option>
+        <option value="1">Comuna Socialista Sierra Maestra</option>
+      </select>
+      <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
+      <p class="formulario__input-error"></p>
+      </div>
+
+
+
+      <div class="formulario__mensaje" id="formulario__mensaje">
+        <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+      </div>
+
+      <div class="formulario__grupo formulario__grupo-btn-enviar">
+        <button type="submit" name="btn" class="formulario__btn">Enviar</button>
+        <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Datos enviados exitosamente!</p>
+
+
+      </div>
+
+    </form>
+    <script src="../public/js/formhabitantes.js"></script>
+
+
+
+
     </main>
 
 
