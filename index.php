@@ -44,12 +44,12 @@
     <div class="formulario" id="formulario-login">
       <h1>Inicio de Sesiόn</h1>
       <form method="post" action="php/login_usuario_be.php">
-        <div class="username">
+        <div class="username" id="usuario">
           <input type="text" name="usuario" id="usuario" Required>
           <label>Usuario</label>
         </div>                    
-        <div class="username">
-          <input type="password" name="pass" id="pass" Required>
+        <div class="username" id="password">
+          <input type="password" name="password" id="password" Required>
           <label>Contraseña</label>
         </div>
         <div class="recordar">
@@ -64,6 +64,6 @@
 
     </div>
     <script src="public/js/bootstrapjs/bootstrap.min.js"></script>
-    <script src="public/js/formuser.js"></script>
+    <script src="public/js/formuservalidar.js"></script>
   </body>
 </html>

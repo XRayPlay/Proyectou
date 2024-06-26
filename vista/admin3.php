@@ -256,73 +256,22 @@
       <div class="formulario__grupo" id="grupo__cedula">
       <label for="cedula" class="formulario__label">Cédula</label>
       <div class="formulario__grupo-input">
-        <div class="input-group">
-          <input type="text" class="formulario__input" name="cedula" id="cedula" placeholder="Cedula" max="9">
-          <i class="formulario__validacion-estado fas fa-times-circle"></i>
-        </div>
+      <div class="input-group">
+      <input type="text" class="formulario__input" name="cedula" id="cedula" placeholder="Cedula" max="9">
+      <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
       </div>
       <p class="formulario__input-error">La Cedula debe comenzar con V, E, P o J y debe contener 8 digitos.</p>
       </div>
 
       <!-- Grupo: Nombre -->
-      <div class="formulario__grupo" id="grupo__nombre">
-      <label for="nombre" class="formulario__label">Nombre</label>
+      <div class="formulario__grupo" id="grupo__cartapostulacion">
+      <label for="cartapostulacion" class="formulario__label">Carta de Postulación</label>
       <div class="formulario__grupo-input">
-      <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="Nombre">
+      <input type="file" class="formulario__input" name="cartapostulacion" id="cartapostulacion" placeholder="cartapostulacion">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
-      <p class="formulario__input-error">El Nombre tiene que tener solo letras y espacios.</p>
-      </div>
-
-      <div class="formulario__grupo" id="grupo__apellido">
-      <label for="apellido" class="formulario__label">Apellido</label>
-      <div class="formulario__grupo-input">
-      <input type="text" class="formulario__input" name="apellido" id="apellido" placeholder="Apellido">
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">El Apellido tiene que tener solo letras y espacios.</p>
-      </div>
-
-
-      <!-- Grupo: Contraseña -->
-      
-      <!-- Grupo: Correo Electronico -->
-      <div class="formulario__grupo" id="grupo__lugarnacimiento">
-      <label for="lugarnacimiento" class="formulario__label">Lugar Nacimiento</label>
-      <div class="formulario__grupo-input">
-      <input type="text" class="formulario__input" name="lugarnacimiento" id="lugarnacimiento" placeholder="Lugar de Nacimiento">
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">El Lugar de Nacimiento solo puede contener letras.</p>
-      </div>
-
-      <!-- Grupo: Teléfono -->
-      <div class="formulario__grupo" id="grupo__condicionvivienda">
-      <label for="condicionvivienda" class="formulario__label">Condicion Vivienda</label>
-      <div class="formulario__grupo-input">
-      <input type="text" class="formulario__input" name="condicionvivienda" id="condicionvivienda" placeholder="Condicion de Vivienda">
-
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">La condicion de vivienda.</p>
-      </div>
-
-      <div class="formulario__grupo" id="grupo__catedra">
-      <label for="catedra" class="formulario__label">Catedra</label>
-      <div class="formulario__grupo-input">
-      <input class="formulario__input" name="catedra" id="catedra" placeholder="Catedra Extra Fuera de la institucion">
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">La condicion de vivienda.</p>
-      </div>
-
-      <div class="formulario__grupo" id="grupo__aulaintegrada">
-      <label for="aulaintegrada" class="formulario__label">Aula Integrada</label>
-      <div class="formulario__grupo-input">
-      <input class="formulario__input" name="aulaintegrada" id="aulaintegrada">
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">La condicion de vivienda.</p>
+      <p class="formulario__input-error">La Carta de Postulación.</p>
       </div>
 
       <div class="formulario__mensaje" id="formulario__mensaje">
