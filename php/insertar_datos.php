@@ -1,7 +1,7 @@
 <?php
 
     include 'clases.php';
-
+    $cedulanac = $_POST['cedulanac'];
     $cedula = $_POST['cedula'];
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
@@ -12,6 +12,7 @@
     $comunidad = $_POST['comunidad'];
 
     $datos=array(
+        $cedulanac,
         $cedula, 
         $nombre, 
         $apellido, 

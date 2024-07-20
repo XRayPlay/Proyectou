@@ -250,7 +250,10 @@
 
     <center><h1 class="titulo">Registro Habitantes</h1></center><br><br>
     
-
+  <?php       
+    $c= new conectar();
+    $conexion=$c->conexion();
+  ?>
 
     <form action="../php/insertar_datos.php" class="formulario" id="formulario" method="post">
 
@@ -258,6 +261,13 @@
       <label for="cedula" class="formulario__label">Cedula</label>
       <div class="formulario__grupo-input">
         <div class="input-group">
+        <select class="formulario__input" name="cedulanac" id="cedulanac" placeholder="">
+
+        <option value="">Seleccione</option>
+        <option value="V">Venezolano</option>
+        <option value="E">Extranjero</option>
+
+      </select>
           <input type="text" class="formulario__input" name="cedula" id="cedula" placeholder="cedula" max="9" value="">
           <i class="formulario__validacion-estado fas fa-times-circle"></i>
         </div>
@@ -288,9 +298,11 @@
       <label for="sexo" class="formulario__label">Sexo</label>
       <div class="formulario__grupo-input">
       <select class="formulario__input" name="sexo" id="sexo" placeholder="">
+
         <option value="">Seleccione</option>
         <option value="F">Femenino</option>
         <option value="M">Masculino</option>
+
       </select>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
@@ -311,16 +323,18 @@
       <label for="familia" class="formulario__label">Familia</label>
       <div class="formulario__grupo-input">
       <select class="formulario__input" name="familia" id="familia" placeholder="">
+
+      <option value="">Seleccione</option>
         <?php
-      $c= new conectar();
-            $conexion=$c->conexion();
             $query = "SELECT * FROM `familia`";
             $ejecutar = mysqli_query($conexion, $query);
 
             foreach ($ejecutar as $option) {
             ?>
-        <option value="<?php echo $option['familiaid'];?>"><?php echo $option['parentesco'];?></option>
+        <option value="<?php echo $option['familiaid']." - ".$option['parentesco'];?>"><?php echo $option['parentesco'];?></option>
         <?php } ?>
+
+
       </select>
             <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
@@ -331,16 +345,17 @@
       <label for="direccion" class="formulario__label">Direccion</label>
       <div class="formulario__grupo-input">
       <select class="formulario__input" name="direccion" id="direccion" placeholder="">
-        <option value="">Seleccione</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
+        
+      <option value="">Seleccione</option>
+        <?php
+            $query = "SELECT * FROM `direccion`";
+            $ejecutar = mysqli_query($conexion, $query);
+
+            foreach ($ejecutar as $option) {
+            ?>
+        <option value="<?php echo $option['direccid'];?>"><?php echo $option['bloque']." ".$option['letra']." ".$option['piso']." ".$option['apto'];?></option>
+        <?php } ?>
+        
       </select>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
@@ -351,8 +366,17 @@
       <label for="comunidad" class="formulario__label">Comunidad</label>
       <div class="formulario__grupo-input">
       <select class="formulario__input" name="comunidad" id="comunidad" placeholder="">
-        <option value="">Seleccione</option>
-        <option value="1">Comuna Socialista Sierra Maestra</option>
+
+      <option value="">Seleccione</option>
+      <?php
+            $query = "SELECT * FROM `consejocomunal`";
+            $ejecutar = mysqli_query($conexion, $query);
+
+            foreach ($ejecutar as $option) {
+            ?>
+        <option value="<?php echo $option['idcomunidad']." - ".$option['nombrecomuna'];?>"><?php echo $option['nombrecomuna'];?></option>
+        <?php } ?>
+
       </select>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>

@@ -273,7 +273,7 @@
       <?php
         $c= new conectar();
         $conexion=$c->conexion();
-        $query = $conexion -> query ("SELECT * FROM postulado p INNER JOIN habitantes h on p.habitantesid = h.id_habitantes ORDER BY p.conteovotos asc");
+        $query = $conexion -> query ("SELECT * FROM postulado p INNER JOIN habitantes h on p.habitantesid = h.idhabitantes ORDER BY p.conteovotos desc");
         while ($row = mysqli_fetch_array($query)) {           
 
       ?>
@@ -283,7 +283,10 @@
               <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
               <th><b><?php  ?></b></th>
               <th><b><?php echo $row['conteovotos']; ?></b></th>
-              <th><b><?php  ?></b></th>
+              <th><b>
+                <button type="check" class="btn btn-danger" data-toggle="modal" data-target="#selectChildresn<?php echo $$row['nombre']; ?>"> 
+
+                </b></th>
 
 
             </tr>

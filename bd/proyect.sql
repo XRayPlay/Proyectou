@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 08, 2024 at 12:29 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 20-07-2024 a las 06:19:13
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `proyect`
+-- Base de datos: `proyect`
 --
 CREATE DATABASE IF NOT EXISTS `proyect` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `proyect`;
@@ -26,32 +26,31 @@ USE `proyect`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `consejocomunal`
+-- Estructura de tabla para la tabla `consejocomunal`
 --
 
 CREATE TABLE `consejocomunal` (
-  `id_comunidad` int(11) NOT NULL,
+  `idcomunidad` int(11) NOT NULL,
   `nombrecomuna` varchar(50) NOT NULL,
   `nombreconsejocomunal` varchar(50) NOT NULL,
   `N_MPPCPS` int(11) NOT NULL,
   `numeroregistro` varchar(18) NOT NULL,
   `rifconsejocomunal` varchar(13) NOT NULL,
   `numerofamilia` int(11) NOT NULL,
-  `numeropersonas` int(11) NOT NULL,
-  `direccion` varchar(50) NOT NULL
+  `numeropersonas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `consejocomunal`
+-- Volcado de datos para la tabla `consejocomunal`
 --
 
-INSERT INTO `consejocomunal` (`id_comunidad`, `nombrecomuna`, `nombreconsejocomunal`, `N_MPPCPS`, `numeroregistro`, `rifconsejocomunal`, `numerofamilia`, `numeropersonas`, `direccion`) VALUES
-(1, 'Comuna Socialista Sierra Maestra', 'Las Islas', 44847, '01-01-22-001-0069', 'J-31181619-4', 546, 1266, '');
+INSERT INTO `consejocomunal` (`idcomunidad`, `nombrecomuna`, `nombreconsejocomunal`, `N_MPPCPS`, `numeroregistro`, `rifconsejocomunal`, `numerofamilia`, `numeropersonas`) VALUES
+(1, 'Comuna Socialista Sierra Maestra', 'Las Islas', 44847, '01-01-22-001-0069', 'J-31181619-4', 546, 1266);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `direccion`
+-- Estructura de tabla para la tabla `direccion`
 --
 
 CREATE TABLE `direccion` (
@@ -63,7 +62,7 @@ CREATE TABLE `direccion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `direccion`
+-- Volcado de datos para la tabla `direccion`
 --
 
 INSERT INTO `direccion` (`direccid`, `bloque`, `letra`, `piso`, `apto`) VALUES
@@ -436,66 +435,66 @@ INSERT INTO `direccion` (`direccid`, `bloque`, `letra`, `piso`, `apto`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `familiia`
+-- Estructura de tabla para la tabla `familia`
 --
 
-CREATE TABLE `familiia` (
+CREATE TABLE `familia` (
   `familiaid` int(11) NOT NULL,
-  `parentesco` varchar(20) NOT NULL,
-  `descripcion` text NOT NULL
+  `parentesco` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `familiia`
+-- Volcado de datos para la tabla `familia`
 --
 
-INSERT INTO `familiia` (`familiaid`, `parentesco`, `descripcion`) VALUES
-(1, 'Jefe (a) d Familia', ''),
-(2, 'Pareja', ''),
-(3, 'Hijio (a)', ''),
-(4, 'Padre', ''),
-(5, 'Madre', ''),
-(6, 'Abuela', ''),
-(7, 'Nuero (a)', ''),
-(8, 'Sobrina (o)', ''),
-(9, 'Tia(o)', '');
+INSERT INTO `familia` (`familiaid`, `parentesco`) VALUES
+(1, 'Jefe (a) d Familia'),
+(2, 'Pareja'),
+(3, 'Hijio (a)'),
+(4, 'Padre'),
+(5, 'Madre'),
+(6, 'Abuela'),
+(7, 'Nuero (a)'),
+(8, 'Sobrina (o)'),
+(9, 'Tia(o)');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `habitantes`
+-- Estructura de tabla para la tabla `habitantes`
 --
 
 CREATE TABLE `habitantes` (
-  `id_habitantes` int(11) NOT NULL,
+  `idhabitantes` int(11) NOT NULL,
+  `cedulanac` varchar(1) NOT NULL,
   `cedula` varchar(12) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `apellido` varchar(20) NOT NULL,
   `sexo` varchar(10) NOT NULL,
   `fechanacimiento` date DEFAULT NULL,
-  `familiaid` int(11) NOT NULL,
-  `direccid` int(11) NOT NULL,
-  `id_comunidad` int(11) NOT NULL
+  `idfamilia` int(11) DEFAULT NULL,
+  `iddirecc` int(11) DEFAULT NULL,
+  `comunidadid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `postulado`
+-- Estructura de tabla para la tabla `postulado`
 --
 
 CREATE TABLE `postulado` (
   `postuladoid` int(11) NOT NULL,
   `conteovotos` int(11) NOT NULL,
   `imagen` mediumblob NOT NULL,
-  `habitantesid` int(11) NOT NULL,
-  `voceriasid` int(11) NOT NULL
+  `habitantesid` int(11) DEFAULT NULL,
+  `idvocerias` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Estructura de tabla para la tabla `roles`
 --
 
 CREATE TABLE `roles` (
@@ -504,7 +503,7 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `roles`
+-- Volcado de datos para la tabla `roles`
 --
 
 INSERT INTO `roles` (`idrol`, `descripcion`) VALUES
@@ -513,27 +512,27 @@ INSERT INTO `roles` (`idrol`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Estructura de tabla para la tabla `user`
 --
 
 CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
   `usuario` varchar(15) NOT NULL,
   `pass` varchar(256) NOT NULL,
-  `idrol` int(11) NOT NULL
+  `idRol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user`
+-- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`id_user`, `usuario`, `pass`, `idrol`) VALUES
+INSERT INTO `user` (`id_user`, `usuario`, `pass`, `idRol`) VALUES
 (1, 'admin', '12345678', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vocerias`
+-- Estructura de tabla para la tabla `vocerias`
 --
 
 CREATE TABLE `vocerias` (
@@ -544,7 +543,7 @@ CREATE TABLE `vocerias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `vocerias`
+-- Volcado de datos para la tabla `vocerias`
 --
 
 INSERT INTO `vocerias` (`voceriasid`, `nomvoce`, `nrovocep`, `nrovoces`) VALUES
@@ -564,162 +563,168 @@ INSERT INTO `vocerias` (`voceriasid`, `nomvoce`, `nrovocep`, `nrovoces`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `votantes`
+-- Estructura de tabla para la tabla `votantes`
 --
 
 CREATE TABLE `votantes` (
   `votanteid` int(11) NOT NULL,
   `limitevoto` int(11) NOT NULL,
-  `habitantesid` int(11) NOT NULL
+  `habitantesid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `consejocomunal`
+-- Indices de la tabla `consejocomunal`
 --
 ALTER TABLE `consejocomunal`
-  ADD PRIMARY KEY (`id_comunidad`);
+  ADD PRIMARY KEY (`idcomunidad`);
 
 --
--- Indexes for table `direccion`
+-- Indices de la tabla `direccion`
 --
 ALTER TABLE `direccion`
   ADD PRIMARY KEY (`direccid`);
 
 --
--- Indexes for table `familiia`
+-- Indices de la tabla `familia`
 --
-ALTER TABLE `familiia`
+ALTER TABLE `familia`
   ADD PRIMARY KEY (`familiaid`);
 
 --
--- Indexes for table `habitantes`
+-- Indices de la tabla `habitantes`
 --
 ALTER TABLE `habitantes`
-  ADD PRIMARY KEY (`id_habitantes`),
-  ADD KEY `familiaid` (`familiaid`),
-  ADD KEY `direccid` (`direccid`),
-  ADD KEY `id_comunidad` (`id_comunidad`);
+  ADD PRIMARY KEY (`idhabitantes`),
+  ADD KEY `idcomunidad` (`comunidadid`),
+  ADD KEY `direccid` (`iddirecc`),
+  ADD KEY `familiaid` (`idfamilia`);
 
 --
--- Indexes for table `postulado`
+-- Indices de la tabla `postulado`
 --
 ALTER TABLE `postulado`
   ADD PRIMARY KEY (`postuladoid`),
-  ADD KEY `habitantesid` (`habitantesid`),
-  ADD KEY `voceriasid` (`voceriasid`);
+  ADD KEY `idhabitantes` (`habitantesid`),
+  ADD KEY `voceriasid` (`idvocerias`);
 
 --
--- Indexes for table `roles`
+-- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`idrol`);
 
 --
--- Indexes for table `user`
+-- Indices de la tabla `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`),
-  ADD KEY `idrol` (`idrol`);
+  ADD KEY `idrol` (`idRol`);
 
 --
--- Indexes for table `vocerias`
+-- Indices de la tabla `vocerias`
 --
 ALTER TABLE `vocerias`
   ADD PRIMARY KEY (`voceriasid`);
 
 --
--- Indexes for table `votantes`
+-- Indices de la tabla `votantes`
 --
 ALTER TABLE `votantes`
   ADD PRIMARY KEY (`votanteid`),
-  ADD KEY `habitantesid` (`habitantesid`) USING BTREE;
+  ADD KEY `idhabitantes` (`habitantesid`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `consejocomunal`
+-- AUTO_INCREMENT de la tabla `consejocomunal`
 --
 ALTER TABLE `consejocomunal`
-  MODIFY `id_comunidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idcomunidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `direccion`
+-- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
   MODIFY `direccid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=366;
 
 --
--- AUTO_INCREMENT for table `familiia`
+-- AUTO_INCREMENT de la tabla `familia`
 --
-ALTER TABLE `familiia`
+ALTER TABLE `familia`
   MODIFY `familiaid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `habitantes`
+-- AUTO_INCREMENT de la tabla `habitantes`
 --
 ALTER TABLE `habitantes`
-  MODIFY `id_habitantes` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idhabitantes` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `postulado`
+-- AUTO_INCREMENT de la tabla `postulado`
 --
 ALTER TABLE `postulado`
   MODIFY `postuladoid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `roles`
+-- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `idrol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `vocerias`
+-- AUTO_INCREMENT de la tabla `vocerias`
 --
 ALTER TABLE `vocerias`
   MODIFY `voceriasid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `votantes`
+-- AUTO_INCREMENT de la tabla `votantes`
 --
 ALTER TABLE `votantes`
   MODIFY `votanteid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `habitantes`
+-- Filtros para la tabla `habitantes`
 --
 ALTER TABLE `habitantes`
-  ADD CONSTRAINT `habitantes_ibfk_1` FOREIGN KEY (`familiaid`) REFERENCES `familiia` (`familiaid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `habitantes_ibfk_2` FOREIGN KEY (`id_comunidad`) REFERENCES `consejocomunal` (`id_comunidad`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `habitantes_ibfk_3` FOREIGN KEY (`direccid`) REFERENCES `direccion` (`direccid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `habitantes_ibfk_1` FOREIGN KEY (`idfamilia`) REFERENCES `familia` (`familiaid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `habitantes_ibfk_2` FOREIGN KEY (`iddirecc`) REFERENCES `direccion` (`direccid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `habitantes_ibfk_3` FOREIGN KEY (`comunidadid`) REFERENCES `consejocomunal` (`idcomunidad`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `postulado`
+-- Filtros para la tabla `postulado`
 --
 ALTER TABLE `postulado`
-  ADD CONSTRAINT `postulado_ibfk_2` FOREIGN KEY (`voceriasid`) REFERENCES `vocerias` (`voceriasid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `postulado_ibfk_3` FOREIGN KEY (`habitantesid`) REFERENCES `habitantes` (`id_habitantes`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `postulado_ibfk_1` FOREIGN KEY (`habitantesid`) REFERENCES `habitantes` (`idhabitantes`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `postulado_ibfk_2` FOREIGN KEY (`idvocerias`) REFERENCES `vocerias` (`voceriasid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `user`
+-- Filtros para la tabla `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`idrol`) REFERENCES `roles` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`idRol`) REFERENCES `roles` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `votantes`
+--
+ALTER TABLE `votantes`
+  ADD CONSTRAINT `votantes_ibfk_1` FOREIGN KEY (`habitantesid`) REFERENCES `habitantes` (`idhabitantes`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -251,7 +251,7 @@
     
 
 
-    <form action="dbestudiantes.php" class="formulario" id="formulario" method="post">
+    <form action="../php/insertar_votante.php" class="formulario" id="formulario" method="post">
 
       <div class="formulario__grupo" id="grupo__cedula">
       <label for="cedula" class="formulario__label">Cédula</label>
@@ -262,16 +262,6 @@
       </div>
       </div>
       <p class="formulario__input-error">La Cedula debe comenzar con V, E, P o J y debe contener 8 digitos.</p>
-      </div>
-
-      <!-- Grupo: Nombre -->
-      <div class="formulario__grupo" id="grupo__cartapostulacion">
-      <label for="cartapostulacion" class="formulario__label">Carta de Postulación</label>
-      <div class="formulario__grupo-input">
-      <input type="file" class="formulario__input" name="cartapostulacion" id="cartapostulacion" placeholder="cartapostulacion">
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">La Carta de Postulación.</p>
       </div>
 
       <div class="formulario__mensaje" id="formulario__mensaje">

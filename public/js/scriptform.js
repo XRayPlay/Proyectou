@@ -2,7 +2,7 @@ const formulario = document.getElementById('formulario')
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-    cedula: /^[V|E|J|P][0-9]{7,8}$/,
+    cedula: /^[0-9]{7,8}$/,
     nombre: /^[a-zA-ZÁ-ÿ]{3,40}$/,
     apellido: /^[a-zA-ZÁ-ÿ]{3,40}$/,
     sexo: /^[a-zA-ZÁ-ÿ]{9}$/,
@@ -105,13 +105,8 @@ inputs.forEach((input) => {
 })
 
 formulario.addEventListener('submit', (e) => {
-    e.preventDefault()
 
-    if(campos.cedula && campos.nombre && campos.apellido && campos.lugarnacimiento && campos.condicionvivienda && campos.catedra && campos.aulaintegrada){
-        formulario.reset();
-    }
-    if(campos.password){
-        formulario.reset();
+    if(campos.cedula){
     }
 })
 

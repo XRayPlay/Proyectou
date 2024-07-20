@@ -251,7 +251,7 @@
     
 
 
-    <form action="dbestudiantes.php" class="formulario" id="formulario" method="post">
+    <form action="../php/insertar_postulado.php" class="formulario" id="formulario" method="post">
 
 
       <!-- Grupo: Cedula -->
@@ -285,6 +285,30 @@
       <p class="formulario__input-error">La imagen tiene que ser jpg o png.</p>
       </div>
 
+      <!-- Grupo: vocerias del postulado -->
+      <div class="formulario__grupo" id="grupo__vocerias">
+      <label for="vocerias" class="formulario__label">vocerias</label>
+      <div class="formulario__grupo-input">
+      <select class="formulario__input" name="vocerias" id="vocerias" placeholder="">
+
+      <option value="">Seleccione</option>
+        <?php
+            $c= new conectar();
+            $conexion=$c->conexion();
+            $query = "SELECT * FROM `vocerias`";
+            $ejecutar = mysqli_query($conexion, $query);
+
+            foreach ($ejecutar as $option) {
+        ?>
+        <option value="<?php echo $option['voceriasid'];?>"><?php echo $option['nomvoce'];?></option>
+        <?php } ?>
+      </select>
+            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
+      <p class="formulario__input-error">fail</p>
+      </div>
+
+      <!-- Grupo: Boton -->
       <div class="formulario__mensaje" id="formulario__mensaje">
         <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
       </div>
