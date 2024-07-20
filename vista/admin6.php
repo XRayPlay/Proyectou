@@ -1,5 +1,5 @@
 <?php
-  require_once "../php/clases.php";
+  include "../php/clases.php";
 
     
     session_start();
@@ -288,12 +288,13 @@
       <label for="sexo" class="formulario__label">Sexo</label>
       <div class="formulario__grupo-input">
       <select class="formulario__input" name="sexo" id="sexo" placeholder="">
+        <option value="">Seleccione</option>
         <option value="F">Femenino</option>
         <option value="M">Masculino</option>
       </select>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
-      <p class="formulario__input-error"></p>
+      <p class="formulario__input-error">fail</p>
       </div>
 
 
@@ -303,48 +304,59 @@
       <input type="date" class="formulario__input" name="fechanacimiento" id="fechanacimiento" placeholder="">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
-      <p class="formulario__input-error"></p>
+      <p class="formulario__input-error">fail</p>
       </div>
 
       <div class="formulario__grupo" id="grupo__familia">
       <label for="familia" class="formulario__label">Familia</label>
       <div class="formulario__grupo-input">
       <select class="formulario__input" name="familia" id="familia" placeholder="">
+        <?php
+      $c= new conectar();
+            $conexion=$c->conexion();
+            $query = "SELECT * FROM `familia`";
+            $ejecutar = mysqli_query($conexion, $query);
 
-        <option value="1">Jefe de Familia</option>
-        <option value="2">Pareja</option>
-        <option value="3">Hijo(a)</option>
-        <option value="4">Padre</option>
-        <option value="5">Madre</option>
-        <option value="6">Abuelo(a)</option>
-        <option value="7">Nuero(a)</option>
-        <option value="8">Sobrino(a)</option>
-        <option value="9">Tio(a)</option>
+            foreach ($ejecutar as $option) {
+            ?>
+        <option value="<?php echo $option['familiaid'];?>"><?php echo $option['parentesco'];?></option>
+        <?php } ?>
       </select>
             <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
-      <p class="formulario__input-error"></p>
+      <p class="formulario__input-error">fail</p>
       </div>
 
       <div class="formulario__grupo" id="grupo__direccion">
       <label for="direccion" class="formulario__label">Direccion</label>
       <div class="formulario__grupo-input">
-      <input type="varchar" class="formulario__input" name="direccion" id="direccion" placeholder="direccion">
+      <select class="formulario__input" name="direccion" id="direccion" placeholder="">
+        <option value="">Seleccione</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
-      <p class="formulario__input-error"></p>
+      <p class="formulario__input-error">fail</p>
       </div>
 
       <div class="formulario__grupo" id="grupo__comunidad">
       <label for="comunidad" class="formulario__label">Comunidad</label>
       <div class="formulario__grupo-input">
       <select class="formulario__input" name="comunidad" id="comunidad" placeholder="">
-
+        <option value="">Seleccione</option>
         <option value="1">Comuna Socialista Sierra Maestra</option>
       </select>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
-      <p class="formulario__input-error"></p>
+      <p class="formulario__input-error">fail</p>
       </div>
 
 

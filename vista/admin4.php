@@ -263,33 +263,27 @@
       
         <thead>
         <tr>
-                                    <th><b>Comuna</b></th>
-                                    <th><b>Consejo Comunal</b></th>
-                                    <th><b>Nro de Familia</b></th>
-                                    <th><b>Nro de Personas</b></th>
-
+                                    <th><b>Nombre</b></th>
+                                    <th><b>imagen</b></th>
+                                    <th><b>votos</b></th>
+                                    <th><b>opciones</b></th>
         </tr>
         </thead>
 
       <?php
         $c= new conectar();
         $conexion=$c->conexion();
-        $query = $conexion -> query ("SELECT * FROM `consejocomunal`");
-        while ($row = mysqli_fetch_array($query)) { 
-
-
-
-
-          
+        $query = $conexion -> query ("SELECT * FROM postulado p INNER JOIN habitantes h on p.habitantesid = h.id_habitantes ORDER BY p.conteovotos asc");
+        while ($row = mysqli_fetch_array($query)) {           
 
       ?>
 
           <tbody>
             <tr>
-              <th><b><?php echo $row['nombrecomuna']; ?></b></th>
-              <th><b><?php echo $row['nombreconsejocomunal']; ?></b></th>
-              <th><b><?php echo $row['numerofamilia']; ?></b></th>
-              <th><b><?php echo $row['numeropersonas']; ?></b></th>
+              <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
+              <th><b><?php  ?></b></th>
+              <th><b><?php echo $row['conteovotos']; ?></b></th>
+              <th><b><?php  ?></b></th>
 
 
             </tr>
