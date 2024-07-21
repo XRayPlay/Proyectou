@@ -163,39 +163,44 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-               <li class="nav-item menu-open">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Comunidad
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="admin1.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Comunas</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="admin2.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Registro de postulados</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="admin3.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Registro de votantes</p>
-                </a>
-              </li>
-
+          <li class="nav-item menu-open">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Comunidad
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="admin1.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Comunas</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="admin2.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Registro de postulados</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="admin3.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Registro de votantes</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="admin6.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Registro habitante</p>
+                  </a>
+                </li>
           </li>
 
+          </ul>
 
-        </ul>
-
+          
         <li class="nav-item menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -217,21 +222,14 @@
                   <p>Resultados</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="admin6.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Registro habitante</p>
-                </a>
-              </li>
-          </li>
-          <li class="nav-item">
+      </nav>
+
+      <li class="nav-item">
                 <a href="chpass.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cambio de Contraseña</p>
                 </a>
           </li>
-          
-      </nav>
 
       <li class="nav-item">
             <a href="../php/cerrar_sesion.php" class="nav-link">
@@ -239,6 +237,7 @@
               <p>Cerrar Sesion</p>
             </a>
           </li>
+      
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -266,6 +265,7 @@
                                     <th><b>Nombre</b></th>
                                     <th><b>imagen</b></th>
                                     <th><b>votos</b></th>
+                                    <th><b>Comite</b></th>
                                     <th><b>opciones</b></th>
         </tr>
         </thead>
@@ -273,7 +273,10 @@
       <?php
         $c= new conectar();
         $conexion=$c->conexion();
-        $query = $conexion -> query ("SELECT * FROM postulado p INNER JOIN habitantes h on p.habitantesid = h.idhabitantes ORDER BY p.conteovotos desc");
+        $query = $conexion -> query ("SELECT * FROM postulado p 
+        INNER JOIN habitantes h on p.habitantesid = h.idhabitantes 
+        INNER JOIN vocerias v on p.idvocerias = v.voceriasid 
+        ORDER BY p.idvocerias asc, p.conteovotos desc");
         while ($row = mysqli_fetch_array($query)) {           
 
       ?>
@@ -281,8 +284,9 @@
           <tbody>
             <tr>
               <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
-              <th><b><?php  ?></b></th>
+              <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
               <th><b><?php echo $row['conteovotos']; ?></b></th>
+              <th><b><?php echo $row['nomvoce']; ?></b></th>
               <th><b>
                 <button type="check" class="btn btn-danger" data-toggle="modal" data-target="#selectChildresn<?php echo $$row['nombre']; ?>"> 
 

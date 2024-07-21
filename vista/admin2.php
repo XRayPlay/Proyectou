@@ -251,7 +251,7 @@
     
 
 
-    <form action="../php/insertar_postulado.php" class="formulario" id="formulario" method="post">
+    <form action="../php/insertar_postulado.php" class="formulario" id="formulario" method="post" enctype="multipart/form-data">
 
 
       <!-- Grupo: Cedula -->
@@ -267,10 +267,10 @@
       </div>
 
       <!-- Grupo: Carta de Postulación -->
-      <div class="formulario__grupo" id="grupo__voceria">
-      <label for="voceria" class="formulario__label">Carta de Postulación</label>
+      <div class="formulario__grupo" id="grupo__doc">
+      <label for="doc" class="formulario__label">Carta de Postulación</label>
       <div class="formulario__grupo-input">
-      <input type="file" class="formulario__input" name="voceria" id="voceria" placeholder="voceria">
+      <input type="file" class="formulario__input" name="doc" id="doc" placeholder="doc" required>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
       <p class="formulario__input-error">La Carta de Postulación debe ser en formato jpg, png o pdf.</p>
@@ -279,7 +279,7 @@
       <div class="formulario__grupo" id="grupo__imagen">
       <label for="imagen" class="formulario__label">Imagen del postulado</label>
       <div class="formulario__grupo-input">
-      <input type="file" class="formulario__input" name="imagen" id="imagen" placeholder="imagen">
+      <input type="file" class="formulario__input" name="imagen" id="imagen" placeholder="imagen" required>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
       <p class="formulario__input-error">La imagen tiene que ser jpg o png.</p>
@@ -289,7 +289,7 @@
       <div class="formulario__grupo" id="grupo__vocerias">
       <label for="vocerias" class="formulario__label">vocerias</label>
       <div class="formulario__grupo-input">
-      <select class="formulario__input" name="vocerias" id="vocerias" placeholder="">
+      <select class="formulario__input" name="vocerias" id="vocerias" placeholder="" required>
 
       <option value="">Seleccione</option>
         <?php
