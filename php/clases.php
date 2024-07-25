@@ -51,7 +51,8 @@
         public function registrarVotante($datos){
             $c= new conectar();
             $conexion=$c->conexion();
-            $query = "INSERT INTO votantes (limitevoto, habitantesid) VALUES('$datos[0]','$datos[1]')";
+            $query = "INSERT INTO votantes (comite1, comite2, comite3, comite4, comite5, comite6, comite7, comite8, comite9, comite10, comite11, comite12,habitantesid) VALUES('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]','$datos[5]','$datos[6]','$datos[7]','$datos[8]','$datos[9]','$datos[10]','$datos[11]','$datos[12]')";
+
             $verificar_postulado = mysqli_query($conexion, "SELECT * FROM postulado WHERE habitantesid='$datos[1]'");
             $verificar_votante = mysqli_query($conexion, "SELECT * FROM votantes WHERE habitantesid='$datos[1]'");
         
@@ -164,7 +165,7 @@
 
         }
 
-        public function login($data){
+        public function votar($data){
 
             $c= new conectar();
             $conexion=$c->conexion();
@@ -178,7 +179,7 @@
 
        if(mysqli_num_rows($validar_login) > 0){
             
-                $_SESSION['usuario'] = $data[0];
+                $_SESSION['cedula'] = $data[0];
                 header("location: ../vista/admin1.php");
                 exit();
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-07-2024 a las 06:19:13
+-- Tiempo de generación: 25-07-2024 a las 07:57:12
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -568,7 +568,18 @@ INSERT INTO `vocerias` (`voceriasid`, `nomvoce`, `nrovocep`, `nrovoces`) VALUES
 
 CREATE TABLE `votantes` (
   `votanteid` int(11) NOT NULL,
-  `limitevoto` int(11) NOT NULL,
+  `comite1` int(1) NOT NULL,
+  `comite2` int(1) NOT NULL,
+  `comite3` int(1) NOT NULL,
+  `comite4` int(1) NOT NULL,
+  `comite5` int(1) NOT NULL,
+  `comite6` int(1) NOT NULL,
+  `comite7` int(1) NOT NULL,
+  `comite8` int(1) NOT NULL,
+  `comite9` int(1) NOT NULL,
+  `comite10` int(1) NOT NULL,
+  `comite11` int(1) NOT NULL,
+  `comite12` int(1) NOT NULL,
   `habitantesid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
