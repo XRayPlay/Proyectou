@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-07-2024 a las 07:57:12
+-- Tiempo de generación: 30-07-2024 a las 06:09:29
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -486,7 +486,8 @@ CREATE TABLE `habitantes` (
 CREATE TABLE `postulado` (
   `postuladoid` int(11) NOT NULL,
   `conteovotos` int(11) NOT NULL,
-  `imagen` mediumblob NOT NULL,
+  `imagen` varchar(500) NOT NULL,
+  `document` varchar(500) NOT NULL,
   `habitantesid` int(11) DEFAULT NULL,
   `idvocerias` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

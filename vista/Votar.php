@@ -1,7 +1,5 @@
 <?php
-    require_once "../php/clases.php";
-
-    
+    require_once "../php/clases.php";    
     session_start();
 
     if(!isset($_SESSION['usuario'])){
@@ -10,30 +8,12 @@
         die();
     }
 
-    if(!isset($_SESSION['cedula'])){
-        include('../vista/votante.php');
-        session_destroy();
-        die();
-    }
-    $fechaDActual= date('d');
-    $fechaMActual= date('m');
-    $fechaAActual= date('Y')-4;
-    $f=array(
-        $fechaDActual,
-        $fechaMActual,
-        $fechaAActual
-    );
+    $cedula = $_POST['cedula'];
 
-    $fechaDmin= date("01");
-    $fechaMmin= date("01");
-    $fechaAmin= date('Y')-15;
-    $f2=array(
-        $fechaDmin,
-        $fechaMmin,
-        $fechaAmin
-    );
-
-
+    $c= new conectar();
+    $conexion=$c->conexion();
+    $obj= new usuario;
+    $obj->votante($cedula);
 ?>
 
 <!DOCTYPE html>
@@ -168,55 +148,63 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-          <li class="nav-item menu-open">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Comunidad
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="admin1.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Comunas</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="admin2.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Registro de postulados</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="admin3.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Registro de votantes</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="admin6.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Registro habitante</p>
-                  </a>
-                </li>
+               <li class="nav-item menu-close">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Comunidad
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="admin1.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Comunas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="admin6.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Registro habitante</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="admin2.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Registro de postulados</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="admin3.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Registro de votantes</p>
+                </a>
+              </li>
+
           </li>
 
-          </ul>
 
-          
+        </ul>
+
         <li class="nav-item menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Votaciones
+              Votaciones
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="votante.php" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Votar</p>
+                </a>
+              </li>
               <li class="nav-item">
-                <a href="admin4.php" class="nav-link active">
+                <a href="admin4.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Postulados</p>
                 </a>
@@ -227,21 +215,37 @@
                   <p>Resultados</p>
                 </a>
               </li>
-      </nav>
+          </li>
+        </ul>
 
-      <li class="nav-item">
+
+
+        <li class="nav-item menu-close">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+              Opciones de Usuario
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+            <li class="nav-item">
                 <a href="chpass.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cambio de Contraseña</p>
                 </a>
-          </li>
+            </li>
 
-      <li class="nav-item">
-            <a href="../php/cerrar_sesion.php" class="nav-link">
-
-              <p>Cerrar Sesion</p>
-            </a>
+            <li class="nav-item">
+                  <a href="../php/cerrar_votante.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Cerrar Sesion</p>
+                  </a>
+            </li>
           </li>
+        </ul>
+      </nav>
       
       <!-- /.sidebar-menu -->
     </div>
@@ -263,12 +267,9 @@
       </div>
 
     <?php 
-        $c= new conectar();
-        $conexion=$c->conexion();
-        $ced=$_SESSION['cedula'];
-        $query = $conexion -> query ("SELECT * FROM habitantes h inner join votantes v on h.cedula=$ced, h.idhabitantes=v.habitantesid");
+        $query = $conexion -> query ("SELECT * FROM habitantes h inner join votantes v on h.cedula=$cedula and h.idhabitantes=v.habitantesid");
         while ($row = mysqli_fetch_array($query)) {  
-        if ($row['comite1'] >0){
+        if ($row['comite1'] > 0){
     ?>
       <form action="" method="post">
 
@@ -287,33 +288,33 @@
       <?php
         $query = $conexion -> query ("SELECT * FROM postulado p 
         INNER JOIN habitantes h on p.habitantesid = h.idhabitantes 
-        INNER JOIN vocerias v on p.idvocerias = v.voceriasid 
+        INNER JOIN vocerias v on p.idvocerias = v.voceriasid and p.idvocerias = 1
         ORDER BY p.idvocerias asc, p.conteovotos desc");
-        while ($row = mysqli_fetch_array($query)) {  
-         
-
+        while ($row = mysqli_fetch_array($query)) {
       ?>
 
           <tbody>
             <tr>
-              <th><b></b></th>
-              <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
-              <th><b></b></th>
+              <th><b><?php echo $row['nombre']; ?></b></th>
+              <th><b><?php echo $row['imagen']; ?></b></th>
+              <th><b><?php echo $row['nomvoce']; ?></b></th>
               <th><b>
-                <select name="voto" id="voto" value="<?php echo $row['postuladoid']; ?>"><?php echo $row['imagen']; ?></select>
+              <?php echo $row['nrovocep']; ?>
               </b></th>
 
 
             </tr>
           </tbody>
-      
+          </form>
       <?php
-          }}}
+          }}
       ?>
-
+      <?php
+          }
+      ?>
    </table>
 
-   </form>
+
     </main>
 
 

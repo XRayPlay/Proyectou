@@ -5,10 +5,10 @@
     session_start();
 
     if(!isset($_SESSION['usuario'])){
-        include('../php/cerrar_sesion.php');
-        session_destroy();
-        die();
-    }
+      include('../php/cerrar_sesion.php');
+      session_destroy();
+      die();
+  }
 
     $fechaDActual= date('d');
     $fechaMActual= date('m');

@@ -5,28 +5,10 @@
     session_start();
 
     if(!isset($_SESSION['usuario'])){
-        include('../php/cerrar_sesion.php');
-        session_destroy();
-        die();
-    }
-
-    $fechaDActual= date('d');
-    $fechaMActual= date('m');
-    $fechaAActual= date('Y')-4;
-    $f=array(
-        $fechaDActual,
-        $fechaMActual,
-        $fechaAActual
-    );
-
-    $fechaDmin= date("01");
-    $fechaMmin= date("01");
-    $fechaAmin= date('Y')-15;
-    $f2=array(
-        $fechaDmin,
-        $fechaMmin,
-        $fechaAmin
-    );
+      include('../php/cerrar_sesion.php');
+      session_destroy();
+      die();
+  }
 
 
 ?>

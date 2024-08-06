@@ -1,6 +1,5 @@
 <?php
   require_once "../php/clases.php";
-
     
     session_start();
 
@@ -9,32 +8,9 @@
         session_destroy();
         die();
     }
-    
-    if(isset($_SESSION['cedula'])){
-        include('../vista/votar.php');
-        session_destroy();
-        die();
-    }
-
-    $fechaDActual= date('d');
-    $fechaMActual= date('m');
-    $fechaAActual= date('Y')-4;
-    $f=array(
-        $fechaDActual,
-        $fechaMActual,
-        $fechaAActual
-    );
-
-    $fechaDmin= date("01");
-    $fechaMmin= date("01");
-    $fechaAmin= date('Y')-15;
-    $f2=array(
-        $fechaDmin,
-        $fechaMmin,
-        $fechaAmin
-    );
 
 
+$_
 ?>
 
 <!DOCTYPE html>
@@ -167,19 +143,26 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-               <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+               <li class="nav-item menu-close">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Comunidad
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="admin1.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Comunas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="admin6.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Registro habitante</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -189,7 +172,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="admin3.php" class="nav-link active">
+                <a href="admin3.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Registro de votantes</p>
                 </a>
@@ -201,14 +184,20 @@
         </ul>
 
         <li class="nav-item menu-open">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Votaciones
+              Votaciones
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="votante.php" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Votar</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="admin4.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -221,28 +210,39 @@
                   <p>Resultados</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="admin6.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Registro habitante</p>
-                </a>
-              </li>
           </li>
-          <li class="nav-item">
+        </ul>
+
+
+
+        <li class="nav-item menu-close">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+              Opciones de Usuario
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+            <li class="nav-item">
                 <a href="chpass.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cambio de Contraseña</p>
                 </a>
+            </li>
+
+            <li class="nav-item">
+                  <a href="../php/cerrar_sesion.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Cerrar Sesion</p>
+                  </a>
+            </li>
           </li>
+        </ul>
           
       </nav>
 
-      <li class="nav-item">
-            <a href="../php/cerrar_sesion.php" class="nav-link">
-
-              <p>Cerrar Sesion</p>
-            </a>
-          </li>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -257,7 +257,7 @@
     
 
 
-    <form action="../php/insertar_votante.php" class="formulario" id="formulario" method="post">
+    <form action="votar.php" class="formulario" id="formulario" method="post">
 
       <div class="formulario__grupo" id="grupo__cedula">
       <label for="cedula" class="formulario__label">Cédula</label>
@@ -267,7 +267,7 @@
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
       </div>
-      <p class="formulario__input-error">La Cedula debe comenzar con V, E, P o J y debe contener 8 digitos.</p>
+      <p class="formulario__input-error">La Cedula debe contener 7 o 8 digitos.</p>
       </div>
 
       <div class="formulario__mensaje" id="formulario__mensaje">
