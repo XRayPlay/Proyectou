@@ -1,5 +1,5 @@
 <?php
-  require_once "../php/clases.php";
+    require_once "../php/clases.php";
 
     
     session_start();
@@ -10,24 +10,6 @@
       die();
   }
 
-    $fechaDActual= date('d');
-    $fechaMActual= date('m');
-    $fechaAActual= date('Y')-4;
-    $f=array(
-        $fechaDActual,
-        $fechaMActual,
-        $fechaAActual
-    );
-
-    $fechaDmin= date("01");
-    $fechaMmin= date("01");
-    $fechaAmin= date('Y')-15;
-    $f2=array(
-        $fechaDmin,
-        $fechaMmin,
-        $fechaAmin
-    );
-
 
 ?>
 
@@ -37,7 +19,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gestion - UECPPB</title>
-  <link rel="stylesheet" href="./public/css/tabla.css">
+  <link rel="stylesheet" href="../public/css/table.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -148,8 +130,10 @@
         <div class="info">
           <a href="#" class="d-block">
             <?php
-          $c= $_SESSION['usuario'];
-          ?></a>
+
+          echo $_SESSION['usuario'];
+
+        ?></a>
         </div>
       </div>
 
@@ -169,7 +153,6 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="admin1.php" class="nav-link">
@@ -233,8 +216,8 @@
 
 
 
-        <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+        <li class="nav-item menu-close">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
               Opciones de Usuario
@@ -244,7 +227,7 @@
             <ul class="nav nav-treeview">
 
             <li class="nav-item">
-                <a href="chpass.php" class="nav-link active">
+                <a href="chpass.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cambio de Contraseña</p>
                 </a>
@@ -257,10 +240,15 @@
                   </a>
             </li>
           </li>
-        </ul>
-          
+        </ul>     
       </nav>
-      
+
+      <li class="nav-item">
+            <a href="../php/cerrar_sesion.php" class="nav-link">
+
+              <p>Cerrar Sesion</p>
+            </a>
+          </li>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -270,51 +258,58 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
 
-    <main>
+      <main>
 
-    
+      <div class="text-right mb-2">
+        <a href="fpdf/pdfvistad.php" target="_blank" class="btn btn-success"><i class="fa-solid fa-file-pdf"></i>Generar Reportes</a>
+      </div>
 
+      <div class="text-right mb-2">
+        <input type="search" placeholder="buscar...">
+      </div>
 
-    <form action="dbestudiantes.php" class="formulario" id="formulario" method="post">
+      <table border="1" class="table table-bordered table-hover w-100">
 
-<div class="formulario__grupo" id="grupo__password">
-<label for="password" class="formulario__label">Ingrese la nueva contraseña</label>
-<div class="formulario__grupo-input">
-  <div class="input-group">
-    <input type="text" class="formulario__input" name="password" id="password" placeholder="" max="9">
-    <i class="formulario__validacion-estado fas fa-times-circle"></i>
-  </div>
-</div>
-<p class="formulario__input-error">La contraseña tiene que tener entre 7 y 15 caracteres, minimo 1 letra minuscula, minimo 1 letra mayuscula y minimo 1 caracter especial ($@$!%*?&).</p>
-</div>
+      
+        <thead>
+        <tr>
+                                    <th><b>Comuna</b></th>
+                                    <th><b>Consejo Comunal</b></th>
+                                    <th><b>Nro de Familia</b></th>
+                                    <th><b>Nro de Personas</b></th>
 
-<!-- Grupo: Nombre -->
-<div class="formulario__grupo" id="grupo__password2">
-<label for="password2" class="formulario__label">Vuelva a escribir la contraseña</label>
-<div class="formulario__grupo-input">
-<input type="text" class="formulario__input" name="password2" id="password2" placeholder="">
-<i class="formulario__validacion-estado fas fa-times-circle"></i>
-</div>
-<p class="formulario__input-error">Las contraseñas no coinciden.</p>
-</div>
+        </tr>
+        </thead>
 
-<div class="formulario__mensaje" id="formulario__mensaje">
-  <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
-</div>
-
-<div class="formulario__grupo formulario__grupo-btn-enviar">
-  <button type="submit" name="btn" class="formulario__btn">Enviar</button>
-  <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Datos enviados exitosamente!</p>
-
-
-</div>
-
-</form>
-<script src="../public/js/scriptform.js"></script>
+      <?php
+        $c= new conectar();
+        $conexion=$c->conexion();
+        $query = $conexion -> query ("SELECT * FROM `consejocomunal`");
+        while ($row = mysqli_fetch_array($query)) { 
 
 
 
 
+          
+
+      ?>
+
+          <tbody>
+            <tr>
+              <th><b><?php echo $row['nombrecomuna']; ?></b></th>
+              <th><b><?php echo $row['nombreconsejocomunal']; ?></b></th>
+              <th><b><?php echo $row['numerofamilia']; ?></b></th>
+              <th><b><?php echo $row['numeropersonas']; ?></b></th>
+
+
+            </tr>
+          </tbody>
+      
+      <?php
+          }
+      ?>
+
+   </table>
     </main>
 
 

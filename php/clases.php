@@ -205,8 +205,6 @@
             $c= new conectar();
             $conexion=$c->conexion();
 
-    $validar_habitante = mysqli_query($conexion, "SELECT * FROM habitantes WHERE cedula='$cedula'");
-
     $validar_votante = mysqli_query($conexion, "SELECT * FROM habitantes h 
             inner join votantes v 
             on h.cedula='$cedula' 
@@ -217,25 +215,9 @@
             on h.cedula='$cedula' 
             and p.habitantesid=h.idhabitantes");
 
-       if(mysqli_num_rows($validar_habitante) == 0){
-
-            echo'
-                <script>
-                alert("Habitante no registrado");
-                window.location = "../vista/votante.php";
-                </script>';
-            exit();
-
-        }
-
         if(mysqli_num_rows($validar_votante) > 0){
 
-            echo'
-                <script>
-                alert("El habitante ya esta registrado como votante");
-                window.location = "../vista/votante.php";
-                </script>';
-            exit();
+            
 
         }
 

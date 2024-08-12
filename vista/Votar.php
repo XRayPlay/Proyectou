@@ -118,7 +118,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="inicio.php" class="brand-link">
       <img src="../asset/Ponlecorazon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Elecciones</span>
     </a>
@@ -254,7 +254,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+    <!-- Votacion del Commite 1 -->
 
       <main>
 
@@ -271,7 +271,7 @@
         while ($row = mysqli_fetch_array($query)) {  
         if ($row['comite1'] > 0){
     ?>
-      <form action="" method="post">
+      <form action="#" id="comite1" method="post">
 
       <table border="1" class="table table-bordered table-hover w-100">
 
@@ -295,12 +295,10 @@
 
           <tbody>
             <tr>
-              <th><b><?php echo $row['nombre']; ?></b></th>
-              <th><b><?php echo $row['imagen']; ?></b></th>
+              <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
+              <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
               <th><b><?php echo $row['nomvoce']; ?></b></th>
-              <th><b>
-              <?php echo $row['nrovocep']; ?>
-              </b></th>
+              <th><b><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite1_1" id="comite1_1"></b></th>
 
 
             </tr>
@@ -309,18 +307,19 @@
       <?php
           }}
       ?>
-      <?php
-          }
-      ?>
+
    </table>
 
-
+   <?php
+          }
+      ?>
     </main>
 
 
 
-    <!-- /.content -->
+    
   </div>
+  <script src="public/js/votar/comite1.js"></script>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
@@ -337,7 +336,7 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
+<script src="../public/js/selectform.js"></script>
 <!-- jQuery -->
 <script src="../plantilla/AdminLTE/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->

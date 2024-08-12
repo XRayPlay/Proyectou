@@ -132,7 +132,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="admin1.php" class="brand-link">
+    <a href="inicio.php" class="brand-link">
       <img src="../asset/Ponlecorazon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Elecciones</span>
     </a>
@@ -162,7 +162,7 @@
                with font-awesome or any other icon font library -->
 
                <li class="nav-item menu-open">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Comunidad
@@ -174,6 +174,12 @@
                 <a href="admin1.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Comunas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="admin6.php" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Registro habitante</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -194,15 +200,21 @@
 
         </ul>
 
-        <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+        <li class="nav-item menu-close">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Votaciones
+              Votaciones
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="votante.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Votar</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="admin4.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -215,20 +227,36 @@
                   <p>Resultados</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="admin6.php" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Registro habitante</p>
-                </a>
-              </li>
           </li>
-          <li class="nav-item">
+        </ul>
+
+
+
+        <li class="nav-item menu-close">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+              Opciones de Usuario
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+            <li class="nav-item">
                 <a href="chpass.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Cambio de Contraseña</p>
                 </a>
+            </li>
+
+            <li class="nav-item">
+                  <a href="../php/cerrar_sesion.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Cerrar Sesion</p>
+                  </a>
+            </li>
           </li>
-          
+        </ul>     
       </nav>
 
       <li class="nav-item">
@@ -306,7 +334,7 @@
       </select>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
-      <p class="formulario__input-error">fail</p>
+      <p class="formulario__input-error">Tiene que seleccionar una opción</p>
       </div>
 
 
@@ -316,7 +344,7 @@
       <input type="date" class="formulario__input" name="fechanacimiento" id="fechanacimiento" placeholder="">
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
-      <p class="formulario__input-error">fail</p>
+      <p class="formulario__input-error">Introduzca una fecha validad</p>
       </div>
 
       <div class="formulario__grupo" id="grupo__familia">
@@ -338,7 +366,7 @@
       </select>
             <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
-      <p class="formulario__input-error">fail</p>
+      <p class="formulario__input-error">Tiene que seleccionar una opción</p>
       </div>
 
       <div class="formulario__grupo" id="grupo__direccion">
@@ -359,7 +387,7 @@
       </select>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
-      <p class="formulario__input-error">fail</p>
+      <p class="formulario__input-error">Tiene que seleccionar una opción</p>
       </div>
 
       <div class="formulario__grupo" id="grupo__comunidad">
@@ -380,7 +408,7 @@
       </select>
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
-      <p class="formulario__input-error">fail</p>
+      <p class="formulario__input-error">Tiene que seleccionar una opción</p>
       </div>
 
 
