@@ -1,0 +1,9 @@
+label span {color: gray; }
+label input:checked + span{ color: black}
+
+#cb1_validacion:empty {display: none;}
+#cb1_validacion{ 
+    background: pink; 
+    color: darkred; 
+    padding: 6px 10px 5px 0; 
+    display: block;}
