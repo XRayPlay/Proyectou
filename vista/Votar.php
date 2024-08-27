@@ -20,6 +20,8 @@
 
         $query = $conexion -> query ("SELECT * FROM habitantes h inner join votantes v on h.cedula=$cedula and h.idhabitantes=v.habitantesid");
         while ($row = mysqli_fetch_array($query)) {  
+          $comm1 = $row['comite1'];
+          $comm2 = $row['comite2'];
 
 ?>
 
@@ -270,7 +272,7 @@
 
     <!-- Votacion del Commite 1 -->
             <?php
-              if($row['comite1'] > 0){
+              if($comm1 > 0){
             ?>
       <form action="check.php" id="comite1" method="post">
       <div class="text-right mb-2">
@@ -311,55 +313,548 @@
    <input type="hidden" name="votante" value="<?php echo $cedula; ?>">
    </form>
    <script src="../public/js/votar/comite.js"></script>
-<?php } ?>
+<?php } ?>    
 
-    <!-- Votacion del Commite 2 -->
-    <?php if($row['comite2'] > 0){ ?>
-
-      <form action="check.php" id="comite2" method="post">
-      <div class="text-right mb-2">
-      <button type="submit" class="btn btn-success">Enviar Voto</button>      
-      </div>
-
-      <center><h1>Comite de Salud</h1></center>
-          <span id="cb2_validacion"></span>
-
-      <table border="1" class="table table-bordered table-hover w-100">      
-        <thead>
-        <tr>
-                                    <th><b>Nombre</b></th>
-                                    <th><b>Imagen</b></th>
-                                    <th><b>Acción</b></th>
-        </tr>
-        </thead>
-
-      <?php
-        $query = $conexion -> query ("SELECT * FROM postulado p 
-        INNER JOIN habitantes h on p.habitantesid = h.idhabitantes 
-        INNER JOIN vocerias v on p.idvocerias = v.voceriasid and p.idvocerias = 2
-        ORDER BY p.idvocerias asc, p.conteovotos desc");
-        while ($row = mysqli_fetch_array($query)) {
-      ?>
-
-          <tbody>
-            <tr>
-              <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
-              <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
-              <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite2[]" id="comite2_2"><span>Votar</span></label></b></th>
-            </tr>
-          </tbody>          
-      <?php } ?>
-   </table>
+        </main>
+  
+<!-- Votacion del Commite 2 -->
+<main>
+        <?php
+          if($comm2 > 0){
+        ?>
+  <form action="check.php" id="comite2" method="post">
+  <div class="text-right mb-2">
+  <button type="submit" class="btn btn-success">Enviar Voto</button>      
   </div>
-   <input type="hidden" name="comite" value="comite2">
-   <input type="hidden" name="votante" value="<?php echo $cedula; ?>">
-   </form>
-   <script src="../public/js/votar/comite2.js"></script>
-<?php } ?>
-    <?php } ?>
-    </main>
 
-    
+  <center><h1>Comite vivienda, habitat y gestion de riesgo</h1></center>
+      <span id="cb2_validacion"></span>
+
+  <table border="1" class="table table-bordered table-hover w-100">      
+    <thead>
+    <tr>
+                                <th><b>Nombre</b></th>
+                                <th><b>Imagen</b></th>
+                                <th><b>Acción</b></th>
+    </tr>
+    </thead>
+
+  <?php
+    $query = $conexion -> query ("SELECT * FROM postulado p 
+    INNER JOIN habitantes h on p.habitantesid = h.idhabitantes 
+    INNER JOIN vocerias v on p.idvocerias = v.voceriasid and p.idvocerias = 2
+    ORDER BY p.idvocerias asc, p.conteovotos desc");
+    while ($row = mysqli_fetch_array($query)) {
+  ?>
+
+      <tbody>
+        <tr>
+          <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
+          <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit2[]" id="comite2_2"><span>Votar</span></label></b></th>
+        </tr>
+      </tbody>          
+  <?php } ?>
+</table>
+</div>
+<input type="hidden" name="comite" value="comite2">
+<input type="hidden" name="votante" value="<?php echo $cedula; ?>">
+</form>
+<script src="../public/js/votar/comite2.js"></script>
+<?php } ?>
+</main>
+
+
+
+<!-- Votacion del Commite 3 -->
+<main>
+        <?php
+          if($comm3 > 0){
+        ?>
+  <form action="check.php" id="comite3" method="post">
+  <div class="text-right mb-2">
+  <button type="submit" class="btn btn-success">Enviar Voto</button>      
+  </div>
+
+  <center><h1>Comite seguridad y defensa</h1></center>
+      <span id="cb3_validacion"></span>
+
+  <table border="1" class="table table-bordered table-hover w-100">      
+    <thead>
+    <tr>
+                                <th><b>Nombre</b></th>
+                                <th><b>Imagen</b></th>
+                                <th><b>Acción</b></th>
+    </tr>
+    </thead>
+
+  <?php
+    $query = $conexion -> query ("SELECT * FROM postulado p 
+    INNER JOIN habitantes h on p.habitantesid = h.idhabitantes 
+    INNER JOIN vocerias v on p.idvocerias = v.voceriasid and p.idvocerias = 3
+    ORDER BY p.idvocerias asc, p.conteovotos desc");
+    while ($row = mysqli_fetch_array($query)) {
+  ?>
+
+      <tbody>
+        <tr>
+          <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
+          <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit3[]" id="comite3_3"><span>Votar</span></label></b></th>
+        </tr>
+      </tbody>          
+  <?php } ?>
+</table>
+</div>
+<input type="hidden" name="comite" value="comite3">
+<input type="hidden" name="votante" value="<?php echo $cedula; ?>">
+</form>
+<script src="../public/js/votar/comite3.js"></script>
+<?php } ?>
+</main>
+
+
+
+
+<!-- Votacion del Commite 4 -->
+<main>
+        <?php
+          if($comm4 > 0){
+        ?>
+  <form action="check.php" id="comite4" method="post">
+  <div class="text-right mb-2">
+  <button type="submit" class="btn btn-success">Enviar Voto</button>      
+  </div>
+
+  <center><h1>Comite Alimentacion y defensa al consumidor y economia comunal</h1></center>
+      <span id="cb4_validacion"></span>
+
+  <table border="1" class="table table-bordered table-hover w-100">      
+    <thead>
+    <tr>
+                                <th><b>Nombre</b></th>
+                                <th><b>Imagen</b></th>
+                                <th><b>Acción</b></th>
+    </tr>
+    </thead>
+
+  <?php
+    $query = $conexion -> query ("SELECT * FROM postulado p 
+    INNER JOIN habitantes h on p.habitantesid = h.idhabitantes 
+    INNER JOIN vocerias v on p.idvocerias = v.voceriasid and p.idvocerias = 4
+    ORDER BY p.idvocerias asc, p.conteovotos desc");
+    while ($row = mysqli_fetch_array($query)) {
+  ?>
+
+      <tbody>
+        <tr>
+          <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
+          <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit4[]" id="comite4_4"><span>Votar</span></label></b></th>
+        </tr>
+      </tbody>          
+  <?php } ?>
+</table>
+</div>
+<input type="hidden" name="comite" value="comite4">
+<input type="hidden" name="votante" value="<?php echo $cedula; ?>">
+</form>
+<script src="../public/js/votar/comite4.js"></script>
+<?php } ?>
+</main>
+
+
+
+<!-- Votacion del Commite 5 -->
+<main>
+        <?php
+          if($comm5 > 0){
+        ?>
+  <form action="check.php" id="comite5" method="post">
+  <div class="text-right mb-2">
+  <button type="submit" class="btn btn-success">Enviar Voto</button>      
+  </div>
+
+  <center><h1>Comite Comunicacion informacion y telecomunicaciones</h1></center>
+      <span id="cb5_validacion"></span>
+
+  <table border="1" class="table table-bordered table-hover w-100">      
+    <thead>
+    <tr>
+                                <th><b>Nombre</b></th>
+                                <th><b>Imagen</b></th>
+                                <th><b>Acción</b></th>
+    </tr>
+    </thead>
+
+  <?php
+    $query = $conexion -> query ("SELECT * FROM postulado p 
+    INNER JOIN habitantes h on p.habitantesid = h.idhabitantes 
+    INNER JOIN vocerias v on p.idvocerias = v.voceriasid and p.idvocerias = 5
+    ORDER BY p.idvocerias asc, p.conteovotos desc");
+    while ($row = mysqli_fetch_array($query)) {
+  ?>
+
+      <tbody>
+        <tr>
+          <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
+          <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit5[]" id="comite5_5"><span>Votar</span></label></b></th>
+        </tr>
+      </tbody>          
+  <?php } ?>
+</table>
+</div>
+<input type="hidden" name="comite" value="comite5">
+<input type="hidden" name="votante" value="<?php echo $cedula; ?>">
+</form>
+<script src="../public/js/votar/comite5.js"></script>
+<?php } ?>
+</main>
+
+
+
+<!-- Votacion del Commite 6 -->
+<main>
+        <?php
+          if($comm6 > 0){
+        ?>
+  <form action="check.php" id="comite6" method="post">
+  <div class="text-right mb-2">
+  <button type="submit" class="btn btn-success">Enviar Voto</button>      
+  </div>
+
+  <center><h1>Comite Proteccion social Ninos adolescente y familia</h1></center>
+      <span id="cb6_validacion"></span>
+
+  <table border="1" class="table table-bordered table-hover w-100">      
+    <thead>
+    <tr>
+                                <th><b>Nombre</b></th>
+                                <th><b>Imagen</b></th>
+                                <th><b>Acción</b></th>
+    </tr>
+    </thead>
+
+  <?php
+    $query = $conexion -> query ("SELECT * FROM postulado p 
+    INNER JOIN habitantes h on p.habitantesid = h.idhabitantes 
+    INNER JOIN vocerias v on p.idvocerias = v.voceriasid and p.idvocerias = 6
+    ORDER BY p.idvocerias asc, p.conteovotos desc");
+    while ($row = mysqli_fetch_array($query)) {
+  ?>
+
+      <tbody>
+        <tr>
+          <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
+          <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit6[]" id="comite6_6"><span>Votar</span></label></b></th>
+        </tr>
+      </tbody>          
+  <?php } ?>
+</table>
+</div>
+<input type="hidden" name="comite" value="comite6">
+<input type="hidden" name="votante" value="<?php echo $cedula; ?>">
+</form>
+<script src="../public/js/votar/comite6.js"></script>
+<?php } ?>
+</main>
+
+
+
+
+<!-- Votacion del Commite 7 -->
+<main>
+        <?php
+          if($comm7 > 0){
+        ?>
+  <form action="check.php" id="comite7" method="post">
+  <div class="text-right mb-2">
+  <button type="submit" class="btn btn-success">Enviar Voto</button>      
+  </div>
+
+  <center><h1>Comite Adulto Mayor y Discapacidad</h1></center>
+      <span id="cb7_validacion"></span>
+
+  <table border="1" class="table table-bordered table-hover w-100">      
+    <thead>
+    <tr>
+                                <th><b>Nombre</b></th>
+                                <th><b>Imagen</b></th>
+                                <th><b>Acción</b></th>
+    </tr>
+    </thead>
+
+  <?php
+    $query = $conexion -> query ("SELECT * FROM postulado p 
+    INNER JOIN habitantes h on p.habitantesid = h.idhabitantes 
+    INNER JOIN vocerias v on p.idvocerias = v.voceriasid and p.idvocerias = 7
+    ORDER BY p.idvocerias asc, p.conteovotos desc");
+    while ($row = mysqli_fetch_array($query)) {
+  ?>
+
+      <tbody>
+        <tr>
+          <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
+          <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit7[]" id="comite7_7"><span>Votar</span></label></b></th>
+        </tr>
+      </tbody>          
+  <?php } ?>
+</table>
+</div>
+<input type="hidden" name="comite" value="comite7">
+<input type="hidden" name="votante" value="<?php echo $cedula; ?>">
+</form>
+<script src="../public/js/votar/comite7.js"></script>
+<?php } ?>
+</main>
+
+
+
+
+
+<!-- Votacion del Commite 8 -->
+<main>
+        <?php
+          if($comm8 > 0){
+        ?>
+  <form action="check.php" id="comite8" method="post">
+  <div class="text-right mb-2">
+  <button type="submit" class="btn btn-success">Enviar Voto</button>      
+  </div>
+
+  <center><h1>Comite Educacion y formacion Ciudadana</h1></center>
+      <span id="cb8_validacion"></span>
+
+  <table border="1" class="table table-bordered table-hover w-100">      
+    <thead>
+    <tr>
+                                <th><b>Nombre</b></th>
+                                <th><b>Imagen</b></th>
+                                <th><b>Acción</b></th>
+    </tr>
+    </thead>
+
+  <?php
+    $query = $conexion -> query ("SELECT * FROM postulado p 
+    INNER JOIN habitantes h on p.habitantesid = h.idhabitantes 
+    INNER JOIN vocerias v on p.idvocerias = v.voceriasid and p.idvocerias = 8
+    ORDER BY p.idvocerias asc, p.conteovotos desc");
+    while ($row = mysqli_fetch_array($query)) {
+  ?>
+
+      <tbody>
+        <tr>
+          <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
+          <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit8[]" id="comite8_8"><span>Votar</span></label></b></th>
+        </tr>
+      </tbody>          
+  <?php } ?>
+</table>
+</div>
+<input type="hidden" name="comite" value="comite8">
+<input type="hidden" name="votante" value="<?php echo $cedula; ?>">
+</form>
+<script src="../public/js/votar/comite8.js"></script>
+<?php } ?>
+</main>
+
+<!-- Votacion del Commite 9 -->
+<main>
+        <?php
+          if($comm9 > 0){
+        ?>
+  <form action="check.php" id="comite9" method="post">
+  <div class="text-right mb-2">
+  <button type="submit" class="btn btn-success">Enviar Voto</button>      
+  </div>
+
+  <center><h1>Comite Mujeres e Igualdad de genero y parto humanizado</h1></center>
+      <span id="cb9_validacion"></span>
+
+  <table border="1" class="table table-bordered table-hover w-100">      
+    <thead>
+    <tr>
+                                <th><b>Nombre</b></th>
+                                <th><b>Imagen</b></th>
+                                <th><b>Acción</b></th>
+    </tr>
+    </thead>
+
+  <?php
+    $query = $conexion -> query ("SELECT * FROM postulado p 
+    INNER JOIN habitantes h on p.habitantesid = h.idhabitantes 
+    INNER JOIN vocerias v on p.idvocerias = v.voceriasid and p.idvocerias = 9
+    ORDER BY p.idvocerias asc, p.conteovotos desc");
+    while ($row = mysqli_fetch_array($query)) {
+  ?>
+
+      <tbody>
+        <tr>
+          <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
+          <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit9[]" id="comite9_9"><span>Votar</span></label></b></th>
+        </tr>
+      </tbody>          
+  <?php } ?>
+</table>
+</div>
+<input type="hidden" name="comite" value="comite9">
+<input type="hidden" name="votante" value="<?php echo $cedula; ?>">
+</form>
+<script src="../public/js/votar/comite9.js"></script>
+<?php } ?>
+</main>
+
+<!-- Votacion del Commite 10 -->
+<main>
+        <?php
+          if($comm10 > 0){
+        ?>
+  <form action="check.php" id="comite10" method="post">
+  <div class="text-right mb-2">
+  <button type="submit" class="btn btn-success">Enviar Voto</button>      
+  </div>
+
+  <center><h1>Comite Cutura Deporte y recreacion</h1></center>
+      <span id="cb10_validacion"></span>
+
+  <table border="1" class="table table-bordered table-hover w-100">      
+    <thead>
+    <tr>
+                                <th><b>Nombre</b></th>
+                                <th><b>Imagen</b></th>
+                                <th><b>Acción</b></th>
+    </tr>
+    </thead>
+
+  <?php
+    $query = $conexion -> query ("SELECT * FROM postulado p 
+    INNER JOIN habitantes h on p.habitantesid = h.idhabitantes 
+    INNER JOIN vocerias v on p.idvocerias = v.voceriasid and p.idvocerias = 10
+    ORDER BY p.idvocerias asc, p.conteovotos desc");
+    while ($row = mysqli_fetch_array($query)) {
+  ?>
+
+      <tbody>
+        <tr>
+          <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
+          <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit10[]" id="comite10_10"><span>Votar</span></label></b></th>
+        </tr>
+      </tbody>          
+  <?php } ?>
+</table>
+</div>
+<input type="hidden" name="comite" value="comite10">
+<input type="hidden" name="votante" value="<?php echo $cedula; ?>">
+</form>
+<script src="../public/js/votar/comite10.js"></script>
+<?php } ?>
+</main>
+
+
+
+<!-- Votacion del Commite 11 -->
+<main>
+        <?php
+          if($comm11 > 0){
+        ?>
+  <form action="check.php" id="comite11" method="post">
+  <div class="text-right mb-2">
+  <button type="submit" class="btn btn-success">Enviar Voto</button>      
+  </div>
+
+  <center><h1>Unidad Administrativa y Financiera</h1></center>
+      <span id="cb11_validacion"></span>
+
+  <table border="1" class="table table-bordered table-hover w-100">      
+    <thead>
+    <tr>
+                                <th><b>Nombre</b></th>
+                                <th><b>Imagen</b></th>
+                                <th><b>Acción</b></th>
+    </tr>
+    </thead>
+
+  <?php
+    $query = $conexion -> query ("SELECT * FROM postulado p 
+    INNER JOIN habitantes h on p.habitantesid = h.idhabitantes 
+    INNER JOIN vocerias v on p.idvocerias = v.voceriasid and p.idvocerias = 11
+    ORDER BY p.idvocerias asc, p.conteovotos desc");
+    while ($row = mysqli_fetch_array($query)) {
+  ?>
+
+      <tbody>
+        <tr>
+          <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
+          <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit11[]" id="comite11_11"><span>Votar</span></label></b></th>
+        </tr>
+      </tbody>          
+  <?php } ?>
+</table>
+</div>
+<input type="hidden" name="comite" value="comite11">
+<input type="hidden" name="votante" value="<?php echo $cedula; ?>">
+</form>
+<script src="../public/js/votar/comite11.js"></script>
+<?php } ?>
+</main>
+
+
+
+
+<!-- Votacion del Commite 12 -->
+<main>
+        <?php
+          if($comm12 > 0){
+        ?>
+  <form action="check.php" id="comite12" method="post">
+  <div class="text-right mb-2">
+  <button type="submit" class="btn btn-success">Enviar Voto</button>      
+  </div>
+
+  <center><h1>Unidad Contraloria Social</h1></center>
+      <span id="cb12_validacion"></span>
+
+  <table border="1" class="table table-bordered table-hover w-100">      
+    <thead>
+    <tr>
+                                <th><b>Nombre</b></th>
+                                <th><b>Imagen</b></th>
+                                <th><b>Acción</b></th>
+    </tr>
+    </thead>
+
+  <?php
+    $query = $conexion -> query ("SELECT * FROM postulado p 
+    INNER JOIN habitantes h on p.habitantesid = h.idhabitantes 
+    INNER JOIN vocerias v on p.idvocerias = v.voceriasid and p.idvocerias = 12
+    ORDER BY p.idvocerias asc, p.conteovotos desc");
+    while ($row = mysqli_fetch_array($query)) {
+  ?>
+
+      <tbody>
+        <tr>
+          <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
+          <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit12[]" id="comite12_12"><span>Votar</span></label></b></th>
+        </tr>
+      </tbody>          
+  <?php } ?>
+</table>
+</div>
+<input type="hidden" name="comite" value="comite12">
+<input type="hidden" name="votante" value="<?php echo $cedula; ?>">
+</form>
+<script src="../public/js/votar/comite12.js"></script>
+<?php } ?>
+</main>
+
   </div>
  
   <!-- /.content-wrapper -->
@@ -414,3 +909,4 @@
 <script src="../plantilla/AdminLTE/dist/js/pages/dashboard.js"></script>
 </body>
 </html>
+<?php } ?>

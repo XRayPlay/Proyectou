@@ -7,7 +7,7 @@ comite2_2.addEventListener("change", () =>{
         
         })
 comite2.addEventListener('submit', e =>{
-
+    e.preventDefault();
     const inputs2 = document.querySelectorAll('#comite2 label input:checked');
     
     if(inputs2.length < 1 || inputs2.length > 1){
