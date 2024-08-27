@@ -2,6 +2,21 @@
     include 'conexion_be.php';
     class usuario{
 
+        public function votar($valor, $idh, $comite){
+            $c= new conectar();
+            $conexion=$c->conexion();
+
+            $query = $conexion -> query ("SELECT * FROM postulado where habitantesid=$valor");
+            while ($row = mysqli_fetch_array($query)) {
+                $sumavoto = $row['conteovotos']+1;
+                $voto = mysqli_query($conexion,"UPDATE `postulado` SET `conteovotos`='$sumavoto' WHERE `habitantesid`=$valor");
+
+                $votante= mysqli_query($conexion,"UPDATE `votantes` SET `$comite`='0' WHERE habitantesid=$idh");
+
+            }
+        }
+
+
         public function actualizarUsuario($datos){
             $c= new conectar();
             $conexion=$c->conexion();

@@ -15,6 +15,12 @@
     $conexion=$c->conexion();
     $obj= new usuario;
     $obj->votante($cedula);
+
+
+
+        $query = $conexion -> query ("SELECT * FROM habitantes h inner join votantes v on h.cedula=$cedula and h.idhabitantes=v.habitantesid");
+        while ($row = mysqli_fetch_array($query)) {  
+
 ?>
 
 <!DOCTYPE html>
@@ -260,32 +266,25 @@
 
 
 
-
+  <main>
 
     <!-- Votacion del Commite 1 -->
-      <main>
-      <?php 
-        $query = $conexion -> query ("SELECT * FROM habitantes h inner join votantes v on h.cedula=$cedula and h.idhabitantes=v.habitantesid");
-        while ($row = mysqli_fetch_array($query)) {  
-        if ($row['comite1'] > 0){
-    ?>
+            <?php
+              if($row['comite1'] > 0){
+            ?>
       <form action="check.php" id="comite1" method="post">
-
       <div class="text-right mb-2">
       <button type="submit" class="btn btn-success">Enviar Voto</button>      
       </div>
 
-
+      <center><h1>Comite de Salud</h1></center>
           <span id="cb1_validacion"></span>
 
-      <table border="1" class="table table-bordered table-hover w-100">
-
-      
+      <table border="1" class="table table-bordered table-hover w-100">      
         <thead>
         <tr>
                                     <th><b>Nombre</b></th>
                                     <th><b>Imagen</b></th>
-                                    <th><b>Comite</b></th>
                                     <th><b>Acción</b></th>
         </tr>
         </thead>
@@ -302,54 +301,34 @@
             <tr>
               <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
               <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
-              <th><b><?php echo $row['nomvoce']; ?></b></th>
-              <th><b>
-                <label>
-                  <input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite1[]" id="comite1_1"><span>Votar</span>
-                </label>
-              </b></th>
-
-
+              <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite1[]" id="comite1_1"><span>Votar</span></label></b></th>
             </tr>
-          </tbody>
-          
-      <?php
-          }}
-      ?>
-
+          </tbody>          
+      <?php } ?>
    </table>
-   <input type="hidden" name="comite1_1" value="1">
+  </div>
+   <input type="hidden" name="comite" value="comite1">
+   <input type="hidden" name="votante" value="<?php echo $cedula; ?>">
    </form>
-   <?php
-          }
-      ?>
+   <script src="../public/js/votar/comite.js"></script>
+<?php } ?>
 
+    <!-- Votacion del Commite 2 -->
+    <?php if($row['comite2'] > 0){ ?>
 
-<!-- Votacion del Commite 2 -->
-<center><h1>Comite vivienda, habitat y gestion de riesgo</h1></center>
-
-<?php 
-        $query = $conexion -> query ("SELECT * FROM habitantes h inner join votantes v on h.cedula=$cedula and h.idhabitantes=v.habitantesid");
-        while ($row = mysqli_fetch_array($query)) {  
-        if ($row['comite2'] > 0){
-    ?>
-      <form action="" id="comite2" method="post">
-
+      <form action="check.php" id="comite2" method="post">
       <div class="text-right mb-2">
       <button type="submit" class="btn btn-success">Enviar Voto</button>      
       </div>
 
-
+      <center><h1>Comite de Salud</h1></center>
           <span id="cb2_validacion"></span>
 
-      <table border="1" class="table table-bordered table-hover w-100">
-
-      
+      <table border="1" class="table table-bordered table-hover w-100">      
         <thead>
         <tr>
                                     <th><b>Nombre</b></th>
                                     <th><b>Imagen</b></th>
-                                    <th><b>Comite</b></th>
                                     <th><b>Acción</b></th>
         </tr>
         </thead>
@@ -366,33 +345,23 @@
             <tr>
               <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
               <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
-              <th><b><?php echo $row['nomvoce']; ?></b></th>
-              <th><b>
-                <label>
-                  <input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite2[]" id="comite2_2"><span>Votar</span>
-                </label>
-              </b></th>
-
-
+              <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite2[]" id="comite2_2"><span>Votar</span></label></b></th>
             </tr>
-          </tbody>
-          
-      <?php
-          }}
-      ?>
-
+          </tbody>          
+      <?php } ?>
    </table>
+  </div>
+   <input type="hidden" name="comite" value="comite2">
+   <input type="hidden" name="votante" value="<?php echo $cedula; ?>">
    </form>
-   <?php
-          }
-      ?>
+   <script src="../public/js/votar/comite2.js"></script>
+<?php } ?>
+    <?php } ?>
     </main>
-
-
 
     
   </div>
-  <script src="../public/js/votar/comite.js"></script>
+ 
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>

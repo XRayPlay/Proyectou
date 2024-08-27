@@ -7,3 +7,88 @@ label input:checked + span{ color: black}
     color: darkred; 
     padding: 6px 10px 5px 0; 
     display: block;}
+
+
+#cb2_validacion:empty {display: none;}
+#cb2_validacion{ 
+    background: pink; 
+    color: darkred; 
+    padding: 6px 10px 5px 0; 
+    display: block;}
+
+
+#cb3_validacion:empty {display: none;}
+#cb3_validacion{ 
+    background: pink; 
+    color: darkred; 
+    padding: 6px 10px 5px 0; 
+    display: block;}
+
+#cb4_validacion:empty {display: none;}
+#cb4_validacion{ 
+    background: pink; 
+    color: darkred; 
+    padding: 6px 10px 5px 0; 
+    display: block;}
+
+
+#cb5_validacion:empty {display: none;}
+#cb5_validacion{ 
+    background: pink; 
+    color: darkred; 
+    padding: 6px 10px 5px 0; 
+    display: block;}
+
+
+#cb6_validacion:empty {display: none;}
+#cb6_validacion{ 
+    background: pink; 
+    color: darkred; 
+    padding: 6px 10px 5px 0; 
+    display: block;}
+
+
+#cb7_validacion:empty {display: none;}
+#cb7_validacion{ 
+    background: pink; 
+    color: darkred; 
+    padding: 6px 10px 5px 0; 
+    display: block;}
+
+
+#cb8_validacion:empty {display: none;}
+#cb8_validacion{ 
+    background: pink; 
+    color: darkred; 
+    padding: 6px 10px 5px 0; 
+    display: block;}
+
+
+#cb9_validacion:empty {display: none;}
+#cb9_validacion{ 
+    background: pink; 
+    color: darkred; 
+    padding: 6px 10px 5px 0; 
+    display: block;}
+
+
+#cb10_validacion:empty {display: none;}
+#cb10_validacion{ 
+    background: pink; 
+    color: darkred; 
+    padding: 6px 10px 5px 0; 
+    display: block;}
+
+#cb11_validacion:empty {display: none;}
+#cb11_validacion{ 
+    background: pink; 
+    color: darkred; 
+    padding: 6px 10px 5px 0; 
+    display: block;}
+
+#cb12_validacion:empty {display: none;}
+#cb12_validacion{ 
+    background: pink; 
+    color: darkred; 
+    padding: 6px 10px 5px 0; 
+    display: block;}
