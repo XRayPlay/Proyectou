@@ -22,6 +22,16 @@
         while ($row = mysqli_fetch_array($query)) {  
           $comm1 = $row['comite1'];
           $comm2 = $row['comite2'];
+          $comm3 = $row['comite3'];
+          $comm4 = $row['comite4'];
+          $comm5 = $row['comite5'];
+          $comm6 = $row['comite6'];
+          $comm7 = $row['comite7'];
+          $comm8 = $row['comite8'];
+          $comm9 = $row['comite9'];
+          $comm10 = $row['comite10'];
+          $comm11 = $row['comite11'];
+          $comm12 = $row['comite12'];
 
 ?>
 
@@ -351,7 +361,7 @@
         <tr>
           <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
           <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
-          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit2[]" id="comite2_2"><span>Votar</span></label></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite2[]" id="comite2_2"><span>Votar</span></label></b></th>
         </tr>
       </tbody>          
   <?php } ?>
@@ -400,7 +410,7 @@
         <tr>
           <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
           <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
-          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit3[]" id="comite3_3"><span>Votar</span></label></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite3[]" id="comite3_3"><span>Votar</span></label></b></th>
         </tr>
       </tbody>          
   <?php } ?>
@@ -450,7 +460,7 @@
         <tr>
           <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
           <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
-          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit4[]" id="comite4_4"><span>Votar</span></label></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite4[]" id="comite4_4"><span>Votar</span></label></b></th>
         </tr>
       </tbody>          
   <?php } ?>
@@ -499,7 +509,7 @@
         <tr>
           <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
           <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
-          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit5[]" id="comite5_5"><span>Votar</span></label></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite5[]" id="comite5_5"><span>Votar</span></label></b></th>
         </tr>
       </tbody>          
   <?php } ?>
@@ -548,7 +558,7 @@
         <tr>
           <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
           <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
-          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit6[]" id="comite6_6"><span>Votar</span></label></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite6[]" id="comite6_6"><span>Votar</span></label></b></th>
         </tr>
       </tbody>          
   <?php } ?>
@@ -598,7 +608,7 @@
         <tr>
           <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
           <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
-          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit7[]" id="comite7_7"><span>Votar</span></label></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite7[]" id="comite7_7"><span>Votar</span></label></b></th>
         </tr>
       </tbody>          
   <?php } ?>
@@ -649,7 +659,7 @@
         <tr>
           <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
           <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
-          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit8[]" id="comite8_8"><span>Votar</span></label></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite8[]" id="comite8_8"><span>Votar</span></label></b></th>
         </tr>
       </tbody>          
   <?php } ?>
@@ -696,7 +706,7 @@
         <tr>
           <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
           <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
-          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit9[]" id="comite9_9"><span>Votar</span></label></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite9[]" id="comite9_9"><span>Votar</span></label></b></th>
         </tr>
       </tbody>          
   <?php } ?>
@@ -743,7 +753,7 @@
         <tr>
           <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
           <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
-          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit10[]" id="comite10_10"><span>Votar</span></label></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite10[]" id="comite10_10"><span>Votar</span></label></b></th>
         </tr>
       </tbody>          
   <?php } ?>
@@ -792,7 +802,7 @@
         <tr>
           <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
           <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
-          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit11[]" id="comite11_11"><span>Votar</span></label></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite11[]" id="comite11_11"><span>Votar</span></label></b></th>
         </tr>
       </tbody>          
   <?php } ?>
@@ -842,7 +852,7 @@
         <tr>
           <th><b><?php echo $row['nombre']." ".$row['apellido']; ?></b></th>
           <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
-          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comit12[]" id="comite12_12"><span>Votar</span></label></b></th>
+          <th><b><label><input type="checkbox" value="<?php echo $row['habitantesid']; ?>" name="comite12[]" id="comite12_12"><span>Votar</span></label></b></th>
         </tr>
       </tbody>          
   <?php } ?>
