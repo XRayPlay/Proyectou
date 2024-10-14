@@ -6,7 +6,7 @@ const selects = document.querySelectorAll('#formulario select');
 const expresiones = {
     cedula: /^[0-9]{7,8}$/,
     nombre: /^[a-zA-ZÁ-ÿ]{3,40}$/,
-    nombres: /^[a-zA-ZÁ-ÿ]{3,40}\s[a-zA-ZÁ-ÿ]{3,40}\s?$/,
+    nombres: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+(?:\s+[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+){1,5}(?:\s+[-\sa-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+)?$/,
     apellido: /^[a-zA-ZÁ-ÿ]{3,40}$/,
     fechanacimiento: /^\d{2,4}\-\d{1,2}\-\d{1,2}$/
     
@@ -110,6 +110,9 @@ const validarFormularioS = (b) => {
         break;
         case "comunidad":
             validarselect(b.target.value, 'comunidad');
+        break;
+        case "cedulanac":
+            validarselect(b.target.value, 'cedulanac');
         break;
     }
 }

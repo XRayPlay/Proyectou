@@ -3,7 +3,7 @@ const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
     usuario: /^[a-zA-ZÁ-ÿ]{3,40}$/,
-    password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/
+    password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{88,15}/
 }
 
 const campos = {
@@ -41,10 +41,10 @@ inputs.forEach((input) => {
 })
 
 formulario.addEventListener('submit', (e) => {
-    e.preventDefault()
+    
 
-    if(campos.usuario && campos.password){
-        formulario.reset();
+    if(!campos.usuario && !campos.password){
+        e.preventDefault()
     }
 })
 

@@ -43,7 +43,7 @@
    
     <div class="formulario" id="formulario-login">
       <h1>Inicio de Sesiόn</h1>
-      <form method="post" action="php/login_usuario_be.php">
+      <form method="post" action="php/login_usuario_be.php" id="formulario">
         <div class="username" id="usuario">
           <input type="text" name="usuario" id="usuario" Required>
           <label>Usuario</label>

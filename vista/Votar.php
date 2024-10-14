@@ -325,10 +325,10 @@
    <script src="../public/js/votar/comite.js"></script>
 <?php } ?>    
 
-        </main>
+        
   
 <!-- Votacion del Commite 2 -->
-<main>
+
         <?php
           if($comm2 > 0){
         ?>
@@ -372,12 +372,12 @@
 </form>
 <script src="../public/js/votar/comite2.js"></script>
 <?php } ?>
-</main>
+
 
 
 
 <!-- Votacion del Commite 3 -->
-<main>
+
         <?php
           if($comm3 > 0){
         ?>
@@ -421,13 +421,13 @@
 </form>
 <script src="../public/js/votar/comite3.js"></script>
 <?php } ?>
-</main>
+
 
 
 
 
 <!-- Votacion del Commite 4 -->
-<main>
+
         <?php
           if($comm4 > 0){
         ?>
@@ -471,12 +471,12 @@
 </form>
 <script src="../public/js/votar/comite4.js"></script>
 <?php } ?>
-</main>
+
 
 
 
 <!-- Votacion del Commite 5 -->
-<main>
+
         <?php
           if($comm5 > 0){
         ?>
@@ -520,12 +520,12 @@
 </form>
 <script src="../public/js/votar/comite5.js"></script>
 <?php } ?>
-</main>
+
 
 
 
 <!-- Votacion del Commite 6 -->
-<main>
+
         <?php
           if($comm6 > 0){
         ?>
@@ -569,13 +569,13 @@
 </form>
 <script src="../public/js/votar/comite6.js"></script>
 <?php } ?>
-</main>
+
 
 
 
 
 <!-- Votacion del Commite 7 -->
-<main>
+
         <?php
           if($comm7 > 0){
         ?>
@@ -619,14 +619,14 @@
 </form>
 <script src="../public/js/votar/comite7.js"></script>
 <?php } ?>
-</main>
+
 
 
 
 
 
 <!-- Votacion del Commite 8 -->
-<main>
+
         <?php
           if($comm8 > 0){
         ?>
@@ -670,10 +670,10 @@
 </form>
 <script src="../public/js/votar/comite8.js"></script>
 <?php } ?>
-</main>
+
 
 <!-- Votacion del Commite 9 -->
-<main>
+
         <?php
           if($comm9 > 0){
         ?>
@@ -717,10 +717,10 @@
 </form>
 <script src="../public/js/votar/comite9.js"></script>
 <?php } ?>
-</main>
+
 
 <!-- Votacion del Commite 10 -->
-<main>
+
         <?php
           if($comm10 > 0){
         ?>
@@ -764,12 +764,12 @@
 </form>
 <script src="../public/js/votar/comite10.js"></script>
 <?php } ?>
-</main>
+
 
 
 
 <!-- Votacion del Commite 11 -->
-<main>
+
         <?php
           if($comm11 > 0){
         ?>
@@ -813,13 +813,13 @@
 </form>
 <script src="../public/js/votar/comite11.js"></script>
 <?php } ?>
-</main>
+
 
 
 
 
 <!-- Votacion del Commite 12 -->
-<main>
+
         <?php
           if($comm12 > 0){
         ?>
@@ -863,10 +863,10 @@
 </form>
 <script src="../public/js/votar/comite12.js"></script>
 <?php } ?>
-</main>
+
 
   </div>
- 
+  </main>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
@@ -919,4 +919,7 @@
 <script src="../plantilla/AdminLTE/dist/js/pages/dashboard.js"></script>
 </body>
 </html>
+
+
+
 <?php } ?>

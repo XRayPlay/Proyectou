@@ -28,6 +28,9 @@
         $fechaAmin
     );
 
+    $c= new conectar();
+    $conexion=$c->conexion();
+    $obj= new usuario;
 
 ?>
 
@@ -279,77 +282,57 @@
     
 
 
-    <form action="../php/insertar_postulado.php" class="formulario" id="formulario" method="post" enctype="multipart/form-data">
+
+      <form action="checkpostulado.php" id="postulados" method="post">
 
 
-      <!-- Grupo: Cedula -->
-      <div class="formulario__grupo" id="grupo__cedula">
-      <label for="cedula" class="formulario__label">Cédula</label>
-      <div class="formulario__grupo-input">
-        <div class="input-group">
-          <input type="text" class="formulario__input" name="cedula" id="cedula" placeholder="Cedula" max="9">
-          <i class="formulario__validacion-estado fas fa-times-circle"></i>
-        </div>
+      <center><h1></h1></center>
+          <span id="cb1_validacion"></span>
+
+      <table border="1" class="table table-bordered table-hover w-100">      
+        <thead>
+        <tr>
+                                    <th><b>Nombre</b></th>
+                                    <th><b>Imagen</b></th>
+                                    <th><b>Acción</b></th>
+        </tr>
+        </thead>
+
+      <?php
+        $query = $conexion -> query ("SELECT * FROM habitantes ORDER BY fechanacimiento asc");
+        while ($row = mysqli_fetch_array($query)) {
+      ?>
+
+          <tbody>
+            <tr>
+              <th><b><?php echo $row['apellido']." ".$row['nombre']; ?></b></th>
+              <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
+              <th><b><label><input type="checkbox" value="<?php echo $row['idhabitantes']; ?>" name="post" id="post">
+                <span>Votar</span></label>
+                <?php } ?>
+                <select class="formulario__input" name="voceriapostulado[]" id="voceriapostulado" placeholder="">
+                <option value="">Seleccione</option>
+                  <?php
+                  $query = "SELECT * FROM `vocerias`";
+                  $ejecutar = mysqli_query($conexion, $query);
+                  foreach ($ejecutar as $option) {
+                    ?>
+                    <option value="<?php echo $option['voceriasid']." - ".$option['nomvoce'];?>"><?php echo $option['nomvoce'];?></option>
+                    <?php } ?></b></th>
+                        </select>
+            </tr>
+          </tbody>          
+      
+   </table>
+
+   <div class="text-right mb-2">
+      <button type="submit" class="btn btn-success">Enviar Voto</button>      
       </div>
-      <p class="formulario__input-error">La Cedula debe comenzar con V, E, P o J y debe contener 8 digitos.</p>
-      </div>
+  </div>
 
-      <!-- Grupo: Carta de Postulación -->
-      <div class="formulario__grupo" id="grupo__doc">
-      <label for="doc" class="formulario__label">Carta de Postulación</label>
-      <div class="formulario__grupo-input">
-      <input type="file" class="formulario__input" name="doc" id="doc" placeholder="doc" required>
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">La Carta de Postulación debe ser en formato jpg, png o pdf.</p>
-      </div>
-      <!-- Grupo: Imagen del postulado -->
-      <div class="formulario__grupo" id="grupo__imagen">
-      <label for="imagen" class="formulario__label">Imagen del postulado</label>
-      <div class="formulario__grupo-input">
-      <input type="file" class="formulario__input" name="imagen" id="imagen" placeholder="imagen" required>
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">La imagen tiene que ser jpg o png.</p>
-      </div>
-
-      <!-- Grupo: vocerias del postulado -->
-      <div class="formulario__grupo" id="grupo__vocerias">
-      <label for="vocerias" class="formulario__label">vocerias</label>
-      <div class="formulario__grupo-input">
-      <select class="formulario__input" name="vocerias" id="vocerias" placeholder="" required>
-
-      <option value="">Seleccione</option>
-        <?php
-            $c= new conectar();
-            $conexion=$c->conexion();
-            $query = "SELECT * FROM `vocerias`";
-            $ejecutar = mysqli_query($conexion, $query);
-
-            foreach ($ejecutar as $option) {
-        ?>
-        <option value="<?php echo $option['voceriasid'];?>"><?php echo $option['nomvoce'];?></option>
-        <?php } ?>
-      </select>
-            <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">fail</p>
-      </div>
-
-      <!-- Grupo: Boton -->
-      <div class="formulario__mensaje" id="formulario__mensaje">
-        <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
-      </div>
-
-      <div class="formulario__grupo formulario__grupo-btn-enviar">
-        <button type="submit" name="btn" class="formulario__btn">Enviar</button>
-        <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Datos enviados exitosamente!</p>
-
-
-      </div>
-
-    </form>
-    <script src="../public/js/scriptform.js"></script>
+   
+   </form>
+   <script src="../public/js/votar/checkpostulado.js"></script> 
 
 
 

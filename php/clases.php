@@ -103,6 +103,8 @@
             $conexion=$c->conexion();
             $query = "INSERT INTO postulado (conteovotos, imagen, document, habitantesid, idvocerias) VALUES('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]')";
 
+            $query1 = "INSERT INTO votantes (comite1, comite2, comite3, comite4, comite5, comite6, comite7, comite8, comite9, comite10, comite11, comite12,habitantesid) VALUES('1','1','2','1','1','1','1','1','1','2','5','5','$datos[3]')";
+
     $verificar_postulado = mysqli_query($conexion, "SELECT * FROM postulado WHERE habitantesid='$datos[3]'");
     $verificar_votante = mysqli_query($conexion, "SELECT * FROM votantes WHERE habitantesid='$datos[3]'");
     
@@ -115,8 +117,9 @@
             exit();
         } else {
             $ejecutar = mysqli_query($conexion, $query);
+            $ejecutar1 = mysqli_query($conexion, $query1);
 
-            if($ejecutar == 1){
+            if($ejecutar == 1 && $ejecutar1 == 1){
                 echo'<script>
                 alert("Se Registro los datos con exito");
                 window.location = "../vista/admin2.php";
@@ -230,20 +233,9 @@
             on h.cedula='$cedula' 
             and p.habitantesid=h.idhabitantes");
 
-        if(mysqli_num_rows($validar_votante) > 0){
-
+        if(mysqli_num_rows($validar_votante) > 0 || mysqli_num_rows($validar_postulado) > 0){
             
-
-        }
-
-        if(mysqli_num_rows($validar_postulado) > 0){
-
-            echo'
-                <script>
-                alert("El habitante ya se registro como postulado");
-                window.location = "../vista/votante.php";
-                </script>';
-            exit();
+            
 
         }
 
@@ -261,8 +253,6 @@
             $hoy = new DateTime();
             $edads = $hoy->diff($cumpleanos);
             $edad=$edads->y;
-
-
 
             if($edad>17 || $edad<80){
                 echo '<script>
@@ -289,49 +279,6 @@
 
 
 
-        public function registrarEstudiantes($datos){
-
-            $c= new conectar();
-            $conexion=$c->conexion();
-
-
-
-    $verificar_estudiante = $conexion -> query("SELECT * FROM estudiante WHERE idrepresentante='$datos[9]'");
-    while ($row = mysqli_fetch_array($verificar_estudiante)) {
-        if($row['nombres'] == $datos[1]){
-            echo'<script>
-                alert("Este estudiante ya se encuentra registrado");
-                window.location = "../vista/inicio.php";
-                </script>';
-            exit();
-        } else {
-                $query = "INSERT INTO estudiante(`nacionalidad`, `documento`, `nombres`, `apellidos`, `sexo`, `fechanacimiento`, `lugarnacimiento`, `condicion`, `act_extra_catedra`, `aula_integrada`, `idrepresentante`, `idgrado`, `idnivel`) 
-                VALUES('V','$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]','$datos[5]','$datos[6]','$datos[7]','$datos[8]','$datos[9]','$datos[10]','$datos[11]')
-                ";
-                $ejecutar = mysqli_query($conexion, $query);
-
-                if($ejecutar == 1){
-
-                echo'<script>
-                    alert("Se Registro al estudiante con exito");
-                    window.location = "../vista/inicio.php";
-                </script>';
-                exit();
-            }else{
-                echo'<script>
-                alert("Fallo el registro del estudiante");
-                window.location = "../vista/inicio.php";
-                </script>';
-                exit();
-            }
-    }}
-
-
-        }
-
-
-
-
 
 
         public function listar($sql){
@@ -348,104 +295,6 @@
 
 
 
+        
 
-
-
-/*
-
-
-        // Metodos
-        public function consultar(){
-            
-            $d=$_GET['documento'];
-            $objConn = new Conexion();
-            $conexion = $objConn -> conectar();
-            $sql = "SELECT * from estudiante WHERE documento = '$d'";
-            $stmt = $conexion->prepare($sql);
-            $stmt->execute();
-            $listUsuarios = array();
-            while($row = $stmt->fetch(PDO::FETCH_OBJ)){
-                $objUsuario = new Estudiante();
-                $objUsuario -> documento = $row->documento;
-                $objUsuario -> nombres = $row->nombres;
-                $objUsuario -> apellidos = $row->apellidos;
-                $objUsuario -> sexo = $row->sexo;
-                $objUsuario -> fechanacimiento = $row->fechanacimiento;
-                $objUsuario -> lugarnacimiento = $row->lugarnacimiento;
-                $objUsuario -> edad = $row->edad;
-                $objUsuario -> condicion = $row->condicion;
-                $objUsuario -> act_extra_catedra = $row->act_extra_catedra;
-                $objUsuario -> aula_integrada = $row->aula_integrada;
-                $listUsuarios[]=$objUsuario;
-            }
-            return $listUsuarios;
-
-            $stmt = null;
-            $objConn -> desconectar();
-
-            
-       }
-    
-
-     public function actualizar($doc){
-            
-            $objConn = new Conexion();
-            $conexion = $objConn -> conectar();
-            $sql="UPDATE estudiante SET documento=:documento,nombres=:nombres,apellidos=:apellidos,
-            sexo=:sexo,fechanacimiento=:fechanacimiento,lugarnacimiento=:lugarnacimiento,edad=:edad,condicion=
-            :condicion,act_extra_catedra=:act_extra_catedra,aula_integrada=:aula_integrada WHERE documento = '$doc'";
-            $stmt = $conexion->prepare($sql);
-            $stmt->bindParam(":documento", $this->documento);
-            $stmt->bindParam(":nombres", $this->nombres);
-            $stmt->bindParam(":apellidos", $this->apellidos);
-            $stmt->bindParam(":sexo", $this->sexo);
-            $stmt->bindParam(":fechanacimiento", $this->fechanacimiento);
-            $stmt->bindParam(":lugarnacimiento", $this->lugarnacimiento);
-            $stmt->bindParam(":edad", $this->edad);
-            $stmt->bindParam(":condicion", $this->condicion);
-            $stmt->bindParam(":act_extra_catedra", $this->act_extra_catedra);
-            $stmt->bindParam(":aula_integrada", $aula_integrada);
-            $stmt->execute();
-            $stmt = null;
-            $objConn -> desconectar();
-            echo "Estudiante actualizado con Exito";
     }
-        public function listar(){
-
-            $objConn = new Conexion();
-            $conexion = $objConn -> conectar();
-            $sql = "SELECT documento, nombres, apellidos, sexo, fechanacimiento, 
-            lugarnacimiento, edad, condicion, act_extra_catedra, aula_integrada 
-            from estudiante";
-            $stmt = $conexion->prepare($sql);
-            $stmt->execute();
-            $listUsuarios = array();
-            while($row = $stmt->fetch(PDO::FETCH_OBJ)){
-                $objUsuario = new Estudiante();
-                $objUsuario -> documento = $row->documento;
-                $objUsuario -> nombres = $row->nombres;
-                $objUsuario -> apellidos = $row->apellidos;
-                $objUsuario -> sexo = $row->sexo;
-                $objUsuario -> fechanacimiento = $row->fechanacimiento;
-                $objUsuario -> lugarnacimiento = $row->lugarnacimiento;
-                $objUsuario -> edad = $row->edad;
-                $objUsuario -> condicion = $row->condicion;
-                $objUsuario -> act_extra_catedra = $row->act_extra_catedra;
-                $objUsuario -> aula_integrada = $row->aula_integrada;
-                $listUsuarios[]=$objUsuario;
-            }
-            return $listUsuarios;
-            $stmt->execute();
-            $stmt = null;
-            $objConn -> desconectar();
-        }
-
-       public function validar(){
-            
-}
-*/
-    }
-    
-?>
-
-

@@ -12,7 +12,7 @@
 
     $fechaDActual= date('d');
     $fechaMActual= date('m');
-    $fechaAActual= date('Y')-4;
+    $fechaAActual= date('Y');
     $f=array(
         $fechaDActual,
         $fechaMActual,
@@ -21,7 +21,7 @@
 
     $fechaDmin= date("01");
     $fechaMmin= date("01");
-    $fechaAmin= date('Y')-15;
+    $fechaAmin= date('Y');
     $f2=array(
         $fechaDmin,
         $fechaMmin,
@@ -290,11 +290,9 @@
       <div class="formulario__grupo-input">
         <div class="input-group">
         <select class="formulario__input" name="cedulanac" id="cedulanac" placeholder="">
-
         <option value="">Seleccione</option>
         <option value="V">Venezolano</option>
         <option value="E">Extranjero</option>
-
       </select>
           <input type="text" class="formulario__input" name="cedula" id="cedula" placeholder="cedula" max="9" value="">
           <i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -409,6 +407,17 @@
       <i class="formulario__validacion-estado fas fa-times-circle"></i>
       </div>
       <p class="formulario__input-error">Tiene que seleccionar una opción</p>
+      </div>
+
+
+      <!-- Grupo: Imagen del postulado -->
+      <div class="formulario__grupo" id="grupo__imagen">
+      <label for="imagen" class="formulario__label">Imagen del postulado</label>
+      <div class="formulario__grupo-input">
+      <input type="file" class="formulario__input" name="imagen" id="imagen" placeholder="imagen" required>
+      <i class="formulario__validacion-estado fas fa-times-circle"></i>
+      </div>
+      <p class="formulario__input-error">La imagen tiene que ser jpg o png.</p>
       </div>
 
 

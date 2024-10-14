@@ -20,7 +20,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            window.location = "../vista/votante.php";
+            
         </script>';
         exit();
         
@@ -43,7 +43,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            window.location = "../vista/votante.php";
+            
         </script>';
         exit();
 
@@ -66,7 +66,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            window.location = "../vista/votante.php";
+            
         </script>';
         exit();
         
@@ -89,7 +89,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            window.location = "../vista/votante.php";
+            
         </script>';
         exit();
 
@@ -112,7 +112,7 @@ switch ($comite){
             echo'
             <script>
                 alert("Voto exitoso");
-                window.location = "../vista/votante.php";
+                
             </script>';
             exit();
 
@@ -135,7 +135,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            window.location = "../vista/votante.php";
+            
         </script>';
         exit();
 
@@ -158,7 +158,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            window.location = "../vista/votante.php";
+            
         </script>';
         exit();
 
@@ -181,7 +181,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            window.location = "../vista/votante.php";
+            
         </script>';
         exit();
 
@@ -204,7 +204,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            window.location = "../vista/votante.php";
+            
         </script>';
         exit();
 
@@ -227,7 +227,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            window.location = "../vista/votante.php";
+            
         </script>';
         exit();
 
@@ -250,7 +250,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            window.location = "../vista/votante.php";
+            
         </script>';
         exit();
 
@@ -274,7 +274,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            window.location = "../vista/votante.php";
+            
         </script>';
         exit();
     }
