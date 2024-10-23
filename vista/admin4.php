@@ -291,7 +291,6 @@
                                     <th><b>imagen</b></th>
                                     <th><b>votos</b></th>
                                     <th><b>Comite</b></th>
-                                    <th><b>opciones</b></th>
         </tr>
         </thead>
 
@@ -312,10 +311,7 @@
               <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
               <th><b><?php echo $row['conteovotos']; ?></b></th>
               <th><b><?php echo $row['nomvoce']; ?></b></th>
-              <th><b>
-                <button type="check" class="btn btn-danger" data-toggle="modal" data-target="#selectChildresn<?php echo $$row['nombre']; ?>"> 
 
-                </b></th>
 
 
             </tr>
@@ -333,13 +329,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
-    </div>
-  </footer>
+
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

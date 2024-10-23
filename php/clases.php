@@ -32,7 +32,7 @@
         public function registrarDatos($datos){
             $c= new conectar();
             $conexion=$c->conexion();
-            $query = "INSERT INTO habitantes (cedulanac, cedula, nombre, apellido, sexo, fechanacimiento, idfamilia, iddirecc, comunidadid) VALUES('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]','$datos[5]','$datos[6]','$datos[7]','$datos[8]')";
+            $query = "INSERT INTO habitantes (cedulanac, cedula, nombre, apellido, sexo, fechanacimiento, idfamilia, iddirecc, comunidadid, imgdir) VALUES('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]','$datos[5]','$datos[6]','$datos[7]','$datos[8]','$datos[9]')";
     $verificar_usuario = mysqli_query($conexion, "SELECT * FROM habitantes WHERE cedula='$datos[1]'");
 
         if(mysqli_num_rows($verificar_usuario) > 0){
@@ -186,6 +186,39 @@
         }
 
         public function login($data){
+
+            $c= new conectar();
+            $conexion=$c->conexion();
+
+            $query = "SELECT * FROM user WHERE usuario='$data[0]' AND pass='$data[1]'";
+
+    $validar_login = mysqli_query($conexion, $query);
+
+    $rol=mysqli_fetch_array($validar_login);
+
+
+       if(mysqli_num_rows($validar_login) > 0){
+            
+                $_SESSION['usuario'] = $data[0];
+                header("location: ../vista/admin1.php");
+                exit();
+
+        }else{
+            echo'
+                <script>
+                alert("Usuario no existe verifique los datos introducidos");
+                window.location = "../index.php";
+                </script>';
+            exit();
+        }
+
+            
+
+        }
+
+
+
+        public function Votantee($data){
 
             $c= new conectar();
             $conexion=$c->conexion();

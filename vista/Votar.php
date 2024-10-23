@@ -2,10 +2,8 @@
     require_once "../php/clases.php";    
     session_start();
 
-    if(!isset($_SESSION['usuario'])){
-        include('../php/cerrar_sesion.php');
-        session_destroy();
-        die();
+    if(isset($_SESSION['votos'])){
+      header("location: Votar.php");
     }
 
     $cedula = $_POST['cedula'];

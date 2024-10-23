@@ -11,13 +11,20 @@
     $direccion = $_POST['direccion'];
     $comunidad = $_POST['comunidad'];
 
-    $n_img = $_FILES['imagen']['name'];
-    $a_img = $_FILES['imagen']['tmp_name'];
+
+
+    if (!empty($FILES['imagen']['name'])){
+    $n_img = $_FILE['imagen']['name'];
+    $a_img = $_FILE['imagen']['tmp_name'];
     $img = "../imagen/".$n_img;
 
     move_uploaded_file($a_img,$img);
-
-
+    }
+    if (empty($FILES['imagen']['name'])){
+        exit();
+        echo "no existe una imagen";
+        echo $n_img;
+        }
     $cedula=$_POST['cedula'];
     $c= new conectar();
     $conexion=$c->conexion();
@@ -33,17 +40,17 @@
                 $fechanacimiento, 
                 $familia, 
                 $direccion, 
-                $comunidad
+                $comunidad,
                 $img);
 
-                $voceria
+                
                 $obj= new usuario;
                 $obj->registrarDatos($datos);
         
     }else{
         echo'<script>
-                alert("No se encuentra al habitante en la base de datos");
-                window.location = "../vista/admin2.php";
+                alert("El habitante ya esta registrado");
+                window.location = "../vista/admin6.php";
                 </script>';
             exit();
     }

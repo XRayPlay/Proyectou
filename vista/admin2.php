@@ -309,16 +309,16 @@
               <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
               <th><b><label><input type="checkbox" value="<?php echo $row['idhabitantes']; ?>" name="post" id="post">
                 <span>Votar</span></label>
-                <?php } ?>
+                
                 <select class="formulario__input" name="voceriapostulado[]" id="voceriapostulado" placeholder="">
                 <option value="">Seleccione</option>
                   <?php
-                  $query = "SELECT * FROM `vocerias`";
-                  $ejecutar = mysqli_query($conexion, $query);
-                  foreach ($ejecutar as $option) {
+                  $cod = "SELECT * FROM `vocerias`";
+                  $ejecutar = mysqli_query($conexion, $cod);
+                  foreach ($ejecutar as $opt) {
                     ?>
-                    <option value="<?php echo $option['voceriasid']." - ".$option['nomvoce'];?>"><?php echo $option['nomvoce'];?></option>
-                    <?php } ?></b></th>
+                    <option value="<?php echo $opt['voceriasid']." - ".$opt['nomvoce'];?>"><?php echo $opt['nomvoce'];?></option>
+                    <?php } } ?></b></th>
                         </select>
             </tr>
           </tbody>          

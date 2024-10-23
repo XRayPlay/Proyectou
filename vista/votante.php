@@ -3,10 +3,8 @@
     
     session_start();
 
-    if(!isset($_SESSION['usuario'])){
-        include('../php/cerrar_sesion.php');
-        session_destroy();
-        die();
+    if(isset($_SESSION['votos'])){
+      header("location: Votar.php");
     }
 
 

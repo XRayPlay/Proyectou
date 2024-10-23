@@ -413,11 +413,7 @@
       <!-- Grupo: Imagen del postulado -->
       <div class="formulario__grupo" id="grupo__imagen">
       <label for="imagen" class="formulario__label">Imagen del postulado</label>
-      <div class="formulario__grupo-input">
-      <input type="file" class="formulario__input" name="imagen" id="imagen" placeholder="imagen" required>
-      <i class="formulario__validacion-estado fas fa-times-circle"></i>
-      </div>
-      <p class="formulario__input-error">La imagen tiene que ser jpg o png.</p>
+      <input type="file" class="formulario__input" name="imagen" id="imagen" placeholder="imagen">
       </div>
 
 
