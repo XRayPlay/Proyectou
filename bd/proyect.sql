@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-07-2024 a las 06:09:29
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Tiempo de generación: 30-10-2024 a las 01:38:15
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,7 +38,7 @@ CREATE TABLE `consejocomunal` (
   `rifconsejocomunal` varchar(13) NOT NULL,
   `numerofamilia` int(11) NOT NULL,
   `numeropersonas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `consejocomunal`
@@ -59,7 +59,7 @@ CREATE TABLE `direccion` (
   `letra` varchar(5) NOT NULL,
   `piso` varchar(5) NOT NULL,
   `apto` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `direccion`
@@ -441,7 +441,7 @@ INSERT INTO `direccion` (`direccid`, `bloque`, `letra`, `piso`, `apto`) VALUES
 CREATE TABLE `familia` (
   `familiaid` int(11) NOT NULL,
   `parentesco` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `familia`
@@ -472,10 +472,11 @@ CREATE TABLE `habitantes` (
   `apellido` varchar(20) NOT NULL,
   `sexo` varchar(10) NOT NULL,
   `fechanacimiento` date DEFAULT NULL,
+  `imagen` varchar(500) NOT NULL,
   `idfamilia` int(11) DEFAULT NULL,
   `iddirecc` int(11) DEFAULT NULL,
   `comunidadid` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -486,11 +487,9 @@ CREATE TABLE `habitantes` (
 CREATE TABLE `postulado` (
   `postuladoid` int(11) NOT NULL,
   `conteovotos` int(11) NOT NULL,
-  `imagen` varchar(500) NOT NULL,
-  `document` varchar(500) NOT NULL,
   `habitantesid` int(11) DEFAULT NULL,
   `idvocerias` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -501,7 +500,7 @@ CREATE TABLE `postulado` (
 CREATE TABLE `roles` (
   `idrol` int(11) NOT NULL,
   `descripcion` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -521,7 +520,7 @@ CREATE TABLE `user` (
   `usuario` varchar(15) NOT NULL,
   `pass` varchar(256) NOT NULL,
   `idRol` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `user`
@@ -541,7 +540,7 @@ CREATE TABLE `vocerias` (
   `nomvoce` varchar(100) NOT NULL,
   `nrovocep` int(11) NOT NULL,
   `nrovoces` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `vocerias`
@@ -582,7 +581,7 @@ CREATE TABLE `votantes` (
   `comite11` int(1) NOT NULL,
   `comite12` int(1) NOT NULL,
   `habitantesid` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas

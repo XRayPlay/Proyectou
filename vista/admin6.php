@@ -283,7 +283,7 @@
     $conexion=$c->conexion();
   ?>
 
-    <form action="../php/insertar_datos.php" class="formulario" id="formulario" method="post">
+    <form action="../php/insertar_datos.php" class="formulario" id="formulario" enctype="multipart/form-data" method="post">
 
       <div class="formulario__grupo" id="grupo__cedula">
       <label for="cedula" class="formulario__label">Cedula</label>

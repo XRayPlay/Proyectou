@@ -32,21 +32,21 @@
         public function registrarDatos($datos){
             $c= new conectar();
             $conexion=$c->conexion();
-            $query = "INSERT INTO habitantes (cedulanac, cedula, nombre, apellido, sexo, fechanacimiento, idfamilia, iddirecc, comunidadid, imgdir) VALUES('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]','$datos[5]','$datos[6]','$datos[7]','$datos[8]','$datos[9]')";
+            $query = "INSERT INTO habitantes (cedulanac, cedula, nombre, apellido, sexo, fechanacimiento, imagen, idfamilia, iddirecc, comunidadid) VALUES('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]','$datos[5]','$datos[6]','$datos[7]','$datos[8]','$datos[9]')";
     $verificar_usuario = mysqli_query($conexion, "SELECT * FROM habitantes WHERE cedula='$datos[1]'");
 
         if(mysqli_num_rows($verificar_usuario) > 0){
             echo'<script>
-                alert("Este usuario ya se encuentra registrado");
+                alert("Este habitante ya se encuentra registrado");
                 window.location = "../vista/admin6.php";
                 </script>';
             exit();
-        } else {
+        }
             $ejecutar = mysqli_query($conexion, $query);
 
             if($ejecutar == 1){
                 echo'<script>
-                alert("Se Registro los datos con exito");
+                alert("Se Registro al habitante con exito");
                 window.location = "../vista/admin6.php";
                 </script>';
                 exit();
@@ -57,7 +57,7 @@
                 </script>';
                 exit();
             }
-    }
+    
         }
 
 

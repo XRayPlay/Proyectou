@@ -11,37 +11,29 @@
     $direccion = $_POST['direccion'];
     $comunidad = $_POST['comunidad'];
 
-
-
-    if (!empty($FILES['imagen']['name'])){
-    $n_img = $_FILE['imagen']['name'];
-    $a_img = $_FILE['imagen']['tmp_name'];
+    $n_img = $_FILES['imagen']['name'];
+    $archivo = $_FILES['imagen']['tmp_name'];
     $img = "../imagen/".$n_img;
+    
+    move_uploaded_file($archivo,$img);
 
-    move_uploaded_file($a_img,$img);
-    }
-    if (empty($FILES['imagen']['name'])){
-        exit();
-        echo "no existe una imagen";
-        echo $n_img;
-        }
-    $cedula=$_POST['cedula'];
+    
     $c= new conectar();
     $conexion=$c->conexion();
 
     if(mysqli_num_rows(mysqli_query($conexion, "SELECT * FROM habitantes WHERE cedula='$cedula'")) < 1){
 
             $datos=array(
-                $cedulanac,
-                $cedula, 
-                $nombre, 
-                $apellido, 
-                $sexo, 
-                $fechanacimiento, 
-                $familia, 
-                $direccion, 
-                $comunidad,
-                $img);
+                $cedulanac,        // 0
+                $cedula,           // 1
+                $nombre,           // 2
+                $apellido,         // 3
+                $sexo,             // 4
+                $fechanacimiento,  // 5
+                $img,              // 6
+                $familia,          // 7
+                $direccion,        // 8
+                $comunidad);       // 9
 
                 
                 $obj= new usuario;
