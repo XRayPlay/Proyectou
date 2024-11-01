@@ -2,11 +2,12 @@
     require_once "../php/clases.php";    
     session_start();
 
-    if(isset($_SESSION['votos'])){
-      header("location: Votar.php");
+    if(!isset($_SESSION['votos'])){
+      header("location: votante.php");
+      exit();
     }
 
-    $cedula = $_POST['cedula'];
+    
     
 
     $c= new conectar();
