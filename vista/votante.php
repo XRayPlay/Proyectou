@@ -255,7 +255,7 @@ $_
     
 
 
-    <form action="votar.php" class="formulario" id="formulario" method="post">
+    <form action="../php/login_voto_be.php" class="formulario" id="formulario" method="post">
 
       <div class="formulario__grupo" id="grupo__cedula">
       <label for="cedula" class="formulario__label">Cédula</label>

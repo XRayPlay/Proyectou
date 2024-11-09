@@ -7,7 +7,7 @@
       exit();
     }
 
-    
+    $cedula = $_SESSION['votos'];
     
 
     $c= new conectar();
@@ -281,7 +281,7 @@
 
     <!-- Votacion del Commite 1 -->
             <?php
-              if($comm1 > 0){
+              if($comm1 == 0){
             ?>
       <form action="check.php" id="comite1" method="post">
       <div class="text-right mb-2">
@@ -329,7 +329,7 @@
 <!-- Votacion del Commite 2 -->
 
         <?php
-          if($comm2 > 0){
+          if($comm2 == 0){
         ?>
   <form action="check.php" id="comite2" method="post">
   <div class="text-right mb-2">
@@ -378,7 +378,7 @@
 <!-- Votacion del Commite 3 -->
 
         <?php
-          if($comm3 > 0){
+          if($comm3 == 0){
         ?>
   <form action="check.php" id="comite3" method="post">
   <div class="text-right mb-2">
@@ -428,7 +428,7 @@
 <!-- Votacion del Commite 4 -->
 
         <?php
-          if($comm4 > 0){
+          if($comm4 == 0){
         ?>
   <form action="check.php" id="comite4" method="post">
   <div class="text-right mb-2">
@@ -477,7 +477,7 @@
 <!-- Votacion del Commite 5 -->
 
         <?php
-          if($comm5 > 0){
+          if($comm5 == 0){
         ?>
   <form action="check.php" id="comite5" method="post">
   <div class="text-right mb-2">
@@ -526,7 +526,7 @@
 <!-- Votacion del Commite 6 -->
 
         <?php
-          if($comm6 > 0){
+          if($comm6 == 0){
         ?>
   <form action="check.php" id="comite6" method="post">
   <div class="text-right mb-2">
@@ -576,7 +576,7 @@
 <!-- Votacion del Commite 7 -->
 
         <?php
-          if($comm7 > 0){
+          if($comm7 == 0){
         ?>
   <form action="check.php" id="comite7" method="post">
   <div class="text-right mb-2">
@@ -627,7 +627,7 @@
 <!-- Votacion del Commite 8 -->
 
         <?php
-          if($comm8 > 0){
+          if($comm8 == 0){
         ?>
   <form action="check.php" id="comite8" method="post">
   <div class="text-right mb-2">
@@ -674,7 +674,7 @@
 <!-- Votacion del Commite 9 -->
 
         <?php
-          if($comm9 > 0){
+          if($comm9 == 0){
         ?>
   <form action="check.php" id="comite9" method="post">
   <div class="text-right mb-2">

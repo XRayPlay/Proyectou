@@ -11,7 +11,7 @@
                 $sumavoto = $row['conteovotos']+1;
                 $voto = mysqli_query($conexion,"UPDATE `postulado` SET `conteovotos`='$sumavoto' WHERE `habitantesid`=$valor");
 
-                $votante= mysqli_query($conexion,"UPDATE `votantes` SET `$comite`='0' WHERE habitantesid=$idh");
+                $votante= mysqli_query($conexion,"UPDATE `votantes` SET `$comite`='1' WHERE habitantesid=$idh");
 
             }
         }
@@ -42,9 +42,16 @@
                 </script>';
             exit();
         }
-            $ejecutar = mysqli_query($conexion, $query);
-
+            $ejecutar = mysqli_query($conexion, $query);            
             if($ejecutar == 1){
+
+                $quer = $conexion -> query ("SELECT * FROM habitantes WHERE cedula='$datos[1]'");
+                while ($rows = mysqli_fetch_array($quer)) {
+                    $let = $rows['idhabitantes'];
+                $queryy = "INSERT INTO votantes (comite1, comite2, comite3, comite4, comite5, comite6, comite7, comite8, comite9, comite10, comite11, comite12,habitantesid) VALUES('$datos[10]','$datos[11]','$datos[12]','$datos[13]','$datos[14]','$datos[15]','$datos[16]','$datos[17]','$datos[18]','$datos[19]','$datos[20]','$datos[21]','$let')";
+                $ejecutarr = mysqli_query($conexion, $queryy);}
+
+
                 echo'<script>
                 alert("Se Registro al habitante con exito");
                 window.location = "../vista/admin6.php";
@@ -61,47 +68,10 @@
         }
 
 
-
-
-        public function registrarVotante($datos){
-            $c= new conectar();
-            $conexion=$c->conexion();
-            $query = "INSERT INTO votantes (comite1, comite2, comite3, comite4, comite5, comite6, comite7, comite8, comite9, comite10, comite11, comite12,habitantesid) VALUES('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]','$datos[5]','$datos[6]','$datos[7]','$datos[8]','$datos[9]','$datos[10]','$datos[11]','$datos[12]')";
-
-
-
-            $verificar_postulado = mysqli_query($conexion, "SELECT * FROM postulado WHERE habitantesid='$datos[12]'");
-            $verificar_votante = mysqli_query($conexion, "SELECT * FROM votantes WHERE habitantesid='$datos[12]'");
-        
-                if(mysqli_num_rows($verificar_postulado) > 0 || mysqli_num_rows($verificar_votante) > 0){
-            echo'<script>
-                alert("El habitante ya se encuentra registrado");
-                window.location = "../vista/admin3.php";
-                </script>';
-            exit();
-        } else {
-            $ejecutar = mysqli_query($conexion, $query);
-
-            if($ejecutar == 1){
-                echo'<script>
-                alert("Se registro al votante con exito");
-                window.location = "../vista/admin3.php";
-                </script>';
-                exit();
-            }else{
-                echo'<script>
-                alert("Fallo el Registro");
-                window.location = "../vista/admin3.php";
-                </script>';
-                exit();
-            }
-    }
-        }
-
         public function registrarPostulado($datos){
             $c= new conectar();
             $conexion=$c->conexion();
-            $query = "INSERT INTO postulado (conteovotos, imagen, document, habitantesid, idvocerias) VALUES('$datos[0]','$datos[1]','$datos[2]','$datos[3]','$datos[4]')";
+            $query = "INSERT INTO postulado (conteovotos, habitantesid, idvocerias) VALUES('$datos[0]','$datos[1]','$datos[2]')";
 
             $query1 = "INSERT INTO votantes (comite1, comite2, comite3, comite4, comite5, comite6, comite7, comite8, comite9, comite10, comite11, comite12,habitantesid) VALUES('1','1','2','1','1','1','1','1','1','2','5','5','$datos[3]')";
 
@@ -211,36 +181,31 @@
                 </script>';
             exit();
         }
-
-            
-
         }
 
 
 
-        public function Votantee($data){
+        public function Votantee($cedula){
 
             $c= new conectar();
             $conexion=$c->conexion();
 
-            $query = "SELECT * FROM user WHERE usuario='$data[0]' AND pass='$data[1]'";
+            $query = "SELECT * FROM habitantes WHERE cedula='$cedula'";
 
-    $validar_login = mysqli_query($conexion, $query);
-
-    $rol=mysqli_fetch_array($validar_login);
+    $validar_voto = mysqli_query($conexion, $query);
 
 
-       if(mysqli_num_rows($validar_login) > 0){
+       if(mysqli_num_rows($validar_voto) > 0){
             
-                $_SESSION['usuario'] = $data[0];
-                header("location: ../vista/admin1.php");
+                $_SESSION['votos'] = $cedula;
+                header("location: ../vista/votar.php");
                 exit();
 
         }else{
             echo'
                 <script>
-                alert("Usuario no existe verifique los datos introducidos");
-                window.location = "../index.php";
+                alert("El votante no esta registrado");
+                window.location = "../vista/votante.php";
                 </script>';
             exit();
         }
@@ -275,6 +240,7 @@
 
         }  
         }
+    
 
     class consejoComunal{
 

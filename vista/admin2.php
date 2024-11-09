@@ -21,7 +21,7 @@
 
     $fechaDmin= date("01");
     $fechaMmin= date("01");
-    $fechaAmin= date('Y')-15;
+    $fechaAmin= date('Y')-14;
     $f2=array(
         $fechaDmin,
         $fechaMmin,
@@ -191,12 +191,6 @@
                   <p>Registro de postulados</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="admin3.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Registro de votantes</p>
-                </a>
-              </li>
 
           </li>
 
@@ -299,26 +293,30 @@
         </thead>
 
       <?php
-        $query = $conexion -> query ("SELECT * FROM habitantes ORDER BY fechanacimiento asc");
+        $query = $conexion -> query ("SELECT * FROM habitantes ORDER BY nombre asc");
         while ($row = mysqli_fetch_array($query)) {
+          $info = $fechaAmin."-".$fechaMActual."-".$fechaDActual;
+          
       ?>
+      
 
           <tbody>
+            <?php if ($row['fechanacimiento'] <= $info){ ?>
             <tr>
               <th><b><?php echo $row['apellido']." ".$row['nombre']; ?></b></th>
               <th><b><img src="<?php echo $row['imagen']; ?>" alt="" width="180" height="180"></b></th>
               <th><b><label><input type="checkbox" value="<?php echo $row['idhabitantes']; ?>" name="post" id="post">
-                <span>Votar</span></label>
+                <span>Postular Habitante</span></label>
                 
                 <select class="formulario__input" name="voceriapostulado[]" id="voceriapostulado" placeholder="">
-                <option value="">Seleccione</option>
+                <option value="">Seleccione Voceria</option>
                   <?php
                   $cod = "SELECT * FROM `vocerias`";
                   $ejecutar = mysqli_query($conexion, $cod);
                   foreach ($ejecutar as $opt) {
                     ?>
                     <option value="<?php echo $opt['voceriasid']." - ".$opt['nomvoce'];?>"><?php echo $opt['nomvoce'];?></option>
-                    <?php } } ?></b></th>
+                    <?php } } } ?></b></th>
                         </select>
             </tr>
           </tbody>          
@@ -326,7 +324,7 @@
    </table>
 
    <div class="text-right mb-2">
-      <button type="submit" class="btn btn-success">Enviar Voto</button>      
+      <button type="submit" class="btn btn-success">Registrar</button>      
       </div>
   </div>
 

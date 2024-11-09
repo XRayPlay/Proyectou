@@ -1,26 +1,34 @@
 <?php
 include '../php/clases.php';
+    session_start();
+if(!isset($_SESSION['votos'])){
+    header("location: votante.php");
+  }
+
+
 $c= new conectar();
 $conexion=$c->conexion();
 $comite = $_POST['comite'];
+
+$votante=$_SESSION['votos'];
 
 switch ($comite){
     case 'comite1':
         $votante = $_POST['votante'];
         $option = $_POST['comite1'];
         foreach($option as $check1 => $valor){
-            $query = $conexion -> query ("SELECT * FROM habitantes where cedula=$votante");    
+            $query = $conexion -> query ("SELECT * FROM habitantes where cedula=$votante");
             while ($row = mysqli_fetch_array($query)) {
                 $idh = $row['idhabitantes'];
                     $obj = new usuario();
                     $obj->votar($valor, $idh, $comite);
             }
         }
-        unset($valor);              
+        unset($valor);          
         echo'
         <script>
             alert("Voto exitoso");
-            
+            window.location = "votante.php";
         </script>';
         exit();
         
@@ -43,7 +51,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            
+            window.location = "votante.php";
         </script>';
         exit();
 
@@ -66,7 +74,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            
+            window.location = "votante.php";            
         </script>';
         exit();
         
@@ -89,7 +97,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            
+            window.location = "votante.php";            
         </script>';
         exit();
 
@@ -135,7 +143,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            
+            window.location = "votante.php";            
         </script>';
         exit();
 
@@ -158,7 +166,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            
+            window.location = "votante.php";            
         </script>';
         exit();
 
@@ -181,7 +189,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            
+            window.location = "votante.php";            
         </script>';
         exit();
 
@@ -204,7 +212,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            
+            window.location = "votante.php";            
         </script>';
         exit();
 
@@ -227,7 +235,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            
+            window.location = "votante.php";            
         </script>';
         exit();
 
@@ -250,7 +258,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            
+            window.location = "votante.php";            
         </script>';
         exit();
 
@@ -274,7 +282,7 @@ switch ($comite){
         echo'
         <script>
             alert("Voto exitoso");
-            
+            window.location = "votante.php";            
         </script>';
         exit();
     }

@@ -33,11 +33,59 @@
                 $img,              // 6
                 $familia,          // 7
                 $direccion,        // 8
-                $comunidad);       // 9
+                $comunidad,        // 9
+                $com1,             // 10
+                $com2,             // 11
+                $com3,             // 12
+                $com4,             // 13
+                $com5,             // 14
+                $com6,             // 15
+                $com7,             // 16
+                $com,              // 17
+                $com9,             // 18
+                $com10,            // 19
+                $com11,            // 20
+                $com12);           // 21
 
                 
                 $obj= new usuario;
                 $obj->registrarDatos($datos);
+
+
+                $query = $conexion -> query ("SELECT * FROM habitantes WHERE cedula='$cedula'");
+                while ($row = mysqli_fetch_array($query)) {
+            
+                    $com1=1;
+                    $com2=1;
+                    $com3=2;
+                    $com4=1;
+                    $com5=1;
+                    $com6=1;
+                    $com7=1;
+                    $com8=1;
+                    $com9=1;
+                    $com10=2;
+                    $com11=5;
+                    $com12=5;
+                    $idd=$row['idhabitantes'];
+            
+                    $datos=array(
+                        $com1,
+                        $com2,
+                        $com3,
+                        $com4,
+                        $com5,
+                        $com6,
+                        $com7,
+                        $com8,
+                        $com9,
+                        $com10,
+                        $com11,
+                        $com12,
+                        $idd
+                    );
+                    $obj->registrarVotante($datos);
+                }
         
     }else{
         echo'<script>

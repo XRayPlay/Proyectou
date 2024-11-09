@@ -4,7 +4,7 @@
         include 'clases.php';
 
         
-    $cedula = $_POST['usuario'];
+    $cedula = $_POST['cedula'];
 
 
     $obj= new usuario;

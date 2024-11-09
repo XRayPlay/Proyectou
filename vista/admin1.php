@@ -172,12 +172,6 @@
                   <p>Registro de postulados</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="admin3.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Registro de votantes</p>
-                </a>
-              </li>
 
           </li>
 
